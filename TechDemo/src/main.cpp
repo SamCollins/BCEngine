@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <iostream>
 
-int main(int argc, char *argv[])
+#include "Engine.h"
+
+int main(int argc, char* argv[])
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 	SDL_Window* window = SDL_CreateWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -28,6 +30,8 @@ int main(int argc, char *argv[])
 	bool gameRunning = true;
 
 	SDL_Event event;
+
+	Engine::TestFunc();
 
 	while (gameRunning)
 	{
