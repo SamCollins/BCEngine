@@ -1,56 +1,67 @@
-#include "SDL.h"
+#include <SDL.h>
 
 #include <stdio.h>
 #include <iostream>
 
 #include "Engine.h"
+#include "RenderWindow.h"
 
 int main(int argc, char* argv[])
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
-	SDL_Window* window = SDL_CreateWindow("Test Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		600, 600, SDL_WINDOW_SHOWN);
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
-	SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);
-
-	SDL_Rect testRect;
-
-	testRect.x = 200;
-	testRect.y = 200;
-	testRect.w = 200;
-	testRect.h = 200;
-
-	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-	SDL_RenderFillRect(renderer, &testRect);
-	SDL_RenderPresent(renderer);
+	BCEngine::RenderWindow renderWindow("Demo", 600, 600);
 
 	bool gameRunning = true;
-
 	SDL_Event event;
 
-	Engine::TestFunc();
+	renderWindow.InitRect(200, 200, 200, 200);
+
+	int x_pos = 0, y_pos = 0;
+	int moveSpeed = 10;
 
 	while (gameRunning)
 	{
+		renderWindow.DrawBackground();
+		renderWindow.MoveRect(x_pos, y_pos);
+		renderWindow.DrawRect();
+
+		//x_pos++;
+
+		if (x_pos == 600) x_pos = 0;
+		if (y_pos == 600) y_pos = 0;
+
 		while (SDL_PollEvent(&event))
 		{
 			if (event.type == SDL_QUIT)
 				gameRunning = false;
+
+			if (event.type == SDL_KEYDOWN)
+			{
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_UP:
+					y_pos -= moveSpeed;
+					break;
+				case SDLK_DOWN:
+					y_pos += moveSpeed;
+					break;
+				case SDLK_LEFT:
+					x_pos -= moveSpeed;
+					break;
+				case SDLK_RIGHT:
+					x_pos += moveSpeed;
+					break;
+				default:
+					break;
+				}
+			}
 		}
+
+		std::cout << "x:" << x_pos << "y:" << y_pos << std::endl;
 	}
 
-	/*std::cout << "Set to Cyan" << std::endl;
-	SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);
-
-	std::cout << "Set to Red" << std::endl;
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderClear(renderer);
-	SDL_RenderPresent(renderer);*/
+	renderWindow.CleanUp();
 
 	return 0;
 }
