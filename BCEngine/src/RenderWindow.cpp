@@ -17,6 +17,17 @@ namespace BCEngine
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
 	}
 
+	SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
+	{
+		SDL_Texture* texture = NULL;
+		texture = IMG_LoadTexture(m_renderer, filePath);
+
+		if (texture == NULL)
+			std::cout << "Failed to load texture. Error: " << SDL_GetError() << std::endl;
+
+		return texture;
+	}
+
 	void RenderWindow::DrawBackground()
 	{
 		SDL_SetRenderDrawColor(m_renderer, 0, 255, 255, 255);
