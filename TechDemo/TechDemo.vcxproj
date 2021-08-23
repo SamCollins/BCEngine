@@ -134,12 +134,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;%(AdditionalIncludeDirectories);G:\Cpp_Projects\BCEngine\BCEngine\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;%(AdditionalIncludeDirectories);G:\Cpp_Projects\BCEngine\BCEngine\src;C:\Development\CppProjects\Libraries\SDL2-2.0.16\include;C:\Development\CppProjects\BCEngine\BCEngine\BCEngine\src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>G:\Cpp_Libraries\SDL2-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>G:\Cpp_Libraries\SDL2-2.0.14\lib\x64;C:\Development\CppProjects\Libraries\SDL2-2.0.16\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
