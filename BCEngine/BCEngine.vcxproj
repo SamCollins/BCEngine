@@ -26,6 +26,10 @@
     <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\RenderWindow.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

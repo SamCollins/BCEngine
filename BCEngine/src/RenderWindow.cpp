@@ -17,16 +17,43 @@ namespace BCEngine
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
 	}
 
+	void RenderWindow::ClearScreen()
+	{
+		SDL_RenderClear(m_renderer);
+	}
+
 	SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
 	{
 		SDL_Texture* texture = NULL;
 		texture = IMG_LoadTexture(m_renderer, filePath);
 
 		if (texture == NULL)
+		{
 			std::cout << "Failed to load texture. Error: " << SDL_GetError() << std::endl;
+			std::cout << "Failed to load texture. Error: " << IMG_GetError() << std::endl;
+		}
+			
 
 		return texture;
 	}
+
+	void RenderWindow::RenderTexture(SDL_Texture* p_texture)
+	{
+		SDL_RenderCopy(m_renderer, p_texture, NULL, NULL);
+	}
+
+	void RenderWindow::DisplayTextures()
+	{
+		SDL_RenderPresent(m_renderer);
+	}
+
+	void RenderWindow::CleanUp()
+	{
+		SDL_DestroyRenderer(m_renderer);
+		SDL_DestroyWindow(m_window);
+	}
+
+	#pragma region Rect Demo Functions
 
 	void RenderWindow::DrawBackground()
 	{
@@ -57,9 +84,6 @@ namespace BCEngine
 		SDL_RenderPresent(m_renderer);
 	}
 
-	void RenderWindow::CleanUp()
-	{
-		SDL_DestroyRenderer(m_renderer);
-		SDL_DestroyWindow(m_window);
-	}
+	#pragma endregion
+
 }

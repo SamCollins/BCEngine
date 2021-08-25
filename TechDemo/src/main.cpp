@@ -6,11 +6,11 @@
 #include "Engine.h"
 #include "RenderWindow.h"
 
-int main(int argc, char* argv[])
+void RectDemo()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	BCEngine::RenderWindow renderWindow("Demo", 600, 600);
+	BCEngine::RenderWindow renderWindow("Rect Demo", 600, 600);
 
 	bool gameRunning = true;
 	SDL_Event event;
@@ -62,6 +62,43 @@ int main(int argc, char* argv[])
 	}
 
 	renderWindow.CleanUp();
+}
+
+void TextureDemo()
+{
+	SDL_Init(SDL_INIT_EVERYTHING);
+
+	BCEngine::RenderWindow renderWindow("Texture Demo", 600, 600);
+
+	//SDL_Texture* grassTexture = renderWindow.LoadTexture("res/gfx/ground_grass_1.png");
+	/*SDL_Texture* grassTexture = 
+		renderWindow.LoadTexture("C://Development/CppProjects/BCEngine/BCEngine/TechDemo/src/ground_grass_1.png");*/
+	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/ground_grass_1.png");
+
+
+	bool gameRunning = true;
+	SDL_Event event;
+
+	while (gameRunning)
+	{
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+				gameRunning = false;
+		}
+
+		renderWindow.ClearScreen();
+		renderWindow.RenderTexture(grassTexture);
+		renderWindow.DisplayTextures();
+	}
+
+	renderWindow.CleanUp();
+}
+
+int main(int argc, char* argv[])
+{
+	//RectDemo();
+	TextureDemo();
 
 	return 0;
 }
