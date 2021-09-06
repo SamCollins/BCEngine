@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+#include "Entity.h";
+
 namespace BCEngine
 {
 	class RenderWindow
@@ -16,6 +18,7 @@ namespace BCEngine
 		void ClearScreen();
 		SDL_Texture* LoadTexture(const char* filePath);
 		void RenderTexture(SDL_Texture* p_texture);
+		void RenderEntity(Entity& entity);
 		void DisplayTextures();
 
 		void CleanUp();

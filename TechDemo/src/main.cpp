@@ -5,6 +5,7 @@
 
 #include "Engine.h"
 #include "RenderWindow.h"
+#include "Entity.h"
 
 void RectDemo()
 {
@@ -72,6 +73,7 @@ void TextureDemo()
 
 	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 
+	BCEngine::Entity platform_0(100, 100, grassTexture);
 
 	bool gameRunning = true;
 	SDL_Event event;
@@ -85,7 +87,10 @@ void TextureDemo()
 		}
 
 		renderWindow.ClearScreen();
-		renderWindow.RenderTexture(grassTexture);
+
+		//renderWindow.RenderTexture(grassTexture);
+		renderWindow.RenderEntity(platform_0);
+
 		renderWindow.DisplayTextures();
 	}
 

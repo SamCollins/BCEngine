@@ -39,7 +39,39 @@ namespace BCEngine
 
 	void RenderWindow::RenderTexture(SDL_Texture* p_texture)
 	{
-		SDL_RenderCopy(m_renderer, p_texture, NULL, NULL);
+		SDL_Rect textureSrc;
+		textureSrc.x = 0;
+		textureSrc.y = 0;
+		textureSrc.w = 32;
+		textureSrc.h = 32;
+
+		SDL_Rect textureDest;
+		textureDest.x = 0;
+		textureDest.y = 0;
+		textureDest.w = 32;
+		textureDest.h = 32;
+
+		SDL_RenderCopy(m_renderer, p_texture, &textureSrc, &textureDest);
+	}
+
+	void RenderWindow::RenderEntity(Entity& entity)
+	{
+		SDL_Rect entityCurrentFrame = entity.GetCurrentFrame();
+		int sizeMultiplier = 2;
+
+		SDL_Rect entitySrc;
+		entitySrc.x = entityCurrentFrame.x;
+		entitySrc.y = entityCurrentFrame.y;
+		entitySrc.w = entityCurrentFrame.w;
+		entitySrc.h = entityCurrentFrame.h;
+
+		SDL_Rect entityDest;
+		entityDest.x = entity.GetXPosition() * sizeMultiplier;
+		entityDest.y = entity.GetYPosition() * sizeMultiplier;
+		entityDest.w = entityCurrentFrame.w * sizeMultiplier;
+		entityDest.h = entityCurrentFrame.h * sizeMultiplier;
+
+		SDL_RenderCopy(m_renderer, entity.GetTexture(), &entitySrc, &entityDest);
 	}
 
 	void RenderWindow::DisplayTextures()

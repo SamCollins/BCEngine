@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Engine.h" />
+    <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
