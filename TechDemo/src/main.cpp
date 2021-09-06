@@ -70,10 +70,7 @@ void TextureDemo()
 
 	BCEngine::RenderWindow renderWindow("Texture Demo", 600, 600);
 
-	//SDL_Texture* grassTexture = renderWindow.LoadTexture("res/gfx/ground_grass_1.png");
-	/*SDL_Texture* grassTexture = 
-		renderWindow.LoadTexture("C://Development/CppProjects/BCEngine/BCEngine/TechDemo/src/ground_grass_1.png");*/
-	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/ground_grass_1.png");
+	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 
 
 	bool gameRunning = true;

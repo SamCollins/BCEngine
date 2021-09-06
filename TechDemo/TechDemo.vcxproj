@@ -27,7 +27,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\ground_grass_1.png" />
+    <Image Include="src\res\gfx\ground_grass_1.png" />
+    <Image Include="src\res\gfx\hulking_knight.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libjpeg-9.dll" />
@@ -36,6 +37,7 @@
     <None Include="libwebp-7.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
+    <None Include="src\res\dev\hulking_knight.ase" />
     <None Include="zlib1.dll" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -20,7 +20,10 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\ground_grass_1.png">
+    <Image Include="src\res\gfx\ground_grass_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\res\gfx\hulking_knight.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -32,5 +35,6 @@
     <None Include="libtiff-5.dll" />
     <None Include="libwebp-7.dll" />
     <None Include="zlib1.dll" />
+    <None Include="src\res\dev\hulking_knight.ase" />
   </ItemGroup>
 </Project>
