@@ -27,5 +27,10 @@
   <ItemGroup>
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
+    <None Include="libjpeg-9.dll" />
+    <None Include="libpng16-16.dll" />
+    <None Include="libtiff-5.dll" />
+    <None Include="libwebp-7.dll" />
+    <None Include="zlib1.dll" />
   </ItemGroup>
 </Project>
