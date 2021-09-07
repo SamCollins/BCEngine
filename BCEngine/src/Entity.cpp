@@ -2,8 +2,8 @@
 
 namespace BCEngine
 {
-	Entity::Entity(double x_pos, double y_pos, SDL_Texture* texture)
-		:x_pos(x_pos), y_pos(y_pos), texture(texture)
+	Entity::Entity(Vector2f position, SDL_Texture* texture)
+		:position(position), texture(texture)
 	{
 		//TODO: Make this better, maybe pass Rect in through params
 		currentFrame.x = 0;
@@ -14,7 +14,7 @@ namespace BCEngine
 
 	#pragma region Getters
 
-	double Entity::GetXPosition()
+	/*double Entity::GetXPosition()
 	{
 		return x_pos;
 	}
@@ -22,6 +22,11 @@ namespace BCEngine
 	double Entity::GetYPosition()
 	{
 		return y_pos;
+	}*/
+
+	Vector2f& Entity::GetPosition()
+	{
+		return position;
 	}
 
 	SDL_Rect Entity::GetCurrentFrame()

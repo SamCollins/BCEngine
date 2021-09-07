@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Engine.h"
+#include "Physics.h"
 #include "RenderWindow.h"
 #include "Entity.h"
 
@@ -77,15 +78,13 @@ void TextureDemo()
 	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	//TODO: Make better way of knowing size of tile/texture
-	int grassWidth = 32;
-	int grassHeight = 32;
-	int floorHeight = WINDOW_HEIGHT - grassHeight;
+	float grassWidth = 32;
+	float grassHeight = 32;
+	float floorHeight = WINDOW_HEIGHT - grassHeight;
 
 	const int num_tiles = WINDOW_WIDTH / grassWidth;
 
 	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
-
-	BCEngine::Entity platform_0(100, 100, grassTexture);
 
 	/*std::array<BCEngine::Entity, num_tiles> grassTiles = {
 		BCEngine::Entity(0, 100, grassTexture),
@@ -98,7 +97,7 @@ void TextureDemo()
 
 	for (int i = 0; i < num_tiles; i++)
 	{
-		grassTiles.push_back(BCEngine::Entity(grassWidth * i, floorHeight, grassTexture));
+		grassTiles.push_back(BCEngine::Entity(BCEngine::Vector2f(grassWidth * i, floorHeight), grassTexture));
 	}
 
 	bool gameRunning = true;

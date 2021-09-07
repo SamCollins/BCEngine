@@ -65,9 +65,10 @@ namespace BCEngine
 		entitySrc.w = entityCurrentFrame.w;
 		entitySrc.h = entityCurrentFrame.h;
 
+		//TODO: Make GetPosition better, getting member variable off function call is cringe
 		SDL_Rect entityDest;
-		entityDest.x = entity.GetXPosition() * sizeMultiplier;
-		entityDest.y = entity.GetYPosition() * sizeMultiplier;
+		entityDest.x = entity.GetPosition().x * sizeMultiplier;
+		entityDest.y = entity.GetPosition().y * sizeMultiplier;
 		entityDest.w = entityCurrentFrame.w * sizeMultiplier;
 		entityDest.h = entityCurrentFrame.h * sizeMultiplier;
 
