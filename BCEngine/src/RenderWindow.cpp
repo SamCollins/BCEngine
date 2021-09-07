@@ -22,6 +22,17 @@ namespace BCEngine
 		SDL_RenderClear(m_renderer);
 	}
 
+	int RenderWindow::GetRefreshRate()
+	{
+		int displayIndex = SDL_GetWindowDisplayIndex(m_window);
+
+		SDL_DisplayMode mode;
+
+		SDL_GetDisplayMode(displayIndex, 0, &mode);
+
+		return mode.refresh_rate;
+	}
+
 	SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
 	{
 		SDL_Texture* texture = NULL;

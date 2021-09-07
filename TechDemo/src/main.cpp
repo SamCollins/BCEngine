@@ -5,6 +5,8 @@
 #include <array>
 #include <vector>
 
+#include "BCUtils.h"
+
 #include "Engine.h"
 #include "Physics.h"
 #include "RenderWindow.h"
@@ -76,6 +78,7 @@ void TextureDemo()
 	const int WINDOW_HEIGHT = 512;
 
 	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
+	int windowRefreshRate = renderWindow.GetRefreshRate();
 
 	//TODO: Make better way of knowing size of tile/texture
 	float grassWidth = 32;
@@ -103,13 +106,37 @@ void TextureDemo()
 	bool gameRunning = true;
 	SDL_Event event;
 
+	//timeStep == deltaTime
+	const float timeStep = 0.01f;
+	float accumulator = 0.0f;
+	float currentTime = BCUtils::TimeInSeconds();
+
+	int frameNum = 0;
+
 	while (gameRunning)
 	{
-		while (SDL_PollEvent(&event))
+		int startTicks = SDL_GetTicks();
+
+		float newTime = BCUtils::TimeInSeconds();
+		float frameTime = newTime - currentTime;
+
+		currentTime = newTime;
+		accumulator += frameTime;
+
+		while (accumulator >= timeStep)
 		{
-			if (event.type == SDL_QUIT)
-				gameRunning = false;
+			while (SDL_PollEvent(&event))
+			{
+				if (event.type == SDL_QUIT)
+					gameRunning = false;
+			}
+
+			accumulator -= timeStep;
 		}
+
+		const float alpha = accumulator / timeStep; //What % of a timeStep has accumulated
+
+		std::cout << "alpha: " << alpha << std::endl;
 
 		renderWindow.ClearScreen();
 
@@ -121,12 +148,30 @@ void TextureDemo()
 			renderWindow.RenderEntity(tile);
 		}
 
+		//std::cout << BCUtils::TimeInSeconds() << std::endl;
+
 		renderWindow.DisplayTextures();
+
+		int frameTicks = SDL_GetTicks() - startTicks;
+
+		std::cout << "Frame Number: " << frameNum << " Current Time: " << BCUtils::TimeInSeconds() << std::endl;
+
+		frameNum++;
+
+		if (frameTicks < (1000 / windowRefreshRate))
+		{
+			SDL_Delay((1000 / windowRefreshRate) - frameTicks);
+		}
 	}
 
 	renderWindow.CleanUp();
 }
 
+/*Misc TODO List :
+ - Reorganize file structure in BCEngine (Folders, etc)
+ - Move RectDemo somewhere else
+
+*/
 int main(int argc, char* argv[])
 {
 	//RectDemo();

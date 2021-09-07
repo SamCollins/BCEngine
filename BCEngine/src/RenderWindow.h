@@ -16,6 +16,8 @@ namespace BCEngine
 
 		//Texture Functions
 		void ClearScreen();
+		int GetRefreshRate();
+
 		SDL_Texture* LoadTexture(const char* filePath);
 		void RenderTexture(SDL_Texture* p_texture);
 		void RenderEntity(Entity& entity);
