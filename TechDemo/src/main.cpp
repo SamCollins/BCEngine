@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <array>
+#include <vector>
 
 #include "Engine.h"
 #include "RenderWindow.h"
@@ -69,11 +71,35 @@ void TextureDemo()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	BCEngine::RenderWindow renderWindow("Texture Demo", 600, 600);
+	const int WINDOW_WIDTH = 512;
+	const int WINDOW_HEIGHT = 512;
+
+	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
+
+	//TODO: Make better way of knowing size of tile/texture
+	int grassWidth = 32;
+	int grassHeight = 32;
+	int floorHeight = WINDOW_HEIGHT - grassHeight;
+
+	const int num_tiles = WINDOW_WIDTH / grassWidth;
 
 	SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 
 	BCEngine::Entity platform_0(100, 100, grassTexture);
+
+	/*std::array<BCEngine::Entity, num_tiles> grassTiles = {
+		BCEngine::Entity(0, 100, grassTexture),
+		BCEngine::Entity(50, 100, grassTexture),
+		BCEngine::Entity(75, 100, grassTexture),
+		BCEngine::Entity(100, 100, grassTexture)
+	};*/
+
+	std::vector<BCEngine::Entity> grassTiles;
+
+	for (int i = 0; i < num_tiles; i++)
+	{
+		grassTiles.push_back(BCEngine::Entity(grassWidth * i, floorHeight, grassTexture));
+	}
 
 	bool gameRunning = true;
 	SDL_Event event;
@@ -89,7 +115,12 @@ void TextureDemo()
 		renderWindow.ClearScreen();
 
 		//renderWindow.RenderTexture(grassTexture);
-		renderWindow.RenderEntity(platform_0);
+		//renderWindow.RenderEntity(platform_0);
+
+		for (auto& tile: grassTiles)
+		{
+			renderWindow.RenderEntity(tile);
+		}
 
 		renderWindow.DisplayTextures();
 	}

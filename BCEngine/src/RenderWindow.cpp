@@ -57,7 +57,7 @@ namespace BCEngine
 	void RenderWindow::RenderEntity(Entity& entity)
 	{
 		SDL_Rect entityCurrentFrame = entity.GetCurrentFrame();
-		int sizeMultiplier = 2;
+		int sizeMultiplier = 1;
 
 		SDL_Rect entitySrc;
 		entitySrc.x = entityCurrentFrame.x;
