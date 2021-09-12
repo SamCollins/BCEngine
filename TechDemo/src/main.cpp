@@ -80,7 +80,7 @@ void TextureDemo()
 	const int WINDOW_HEIGHT = 512;
 
 	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
-	int windowRefreshRate = renderWindow.GetRefreshRate();
+	//int windowRefreshRate = renderWindow.GetRefreshRate();
 
 	//TODO: Make better way of knowing size of tile/texture
 	float grassWidth = 32;
@@ -111,29 +111,34 @@ void TextureDemo()
 	bool showDebugInfo = false;
 
 	//timeStep == deltaTime
-	const float timeStep = 0.01f;
-	float accumulator = 0.0f;
-	float currentTime = BCUtils::TimeInSeconds();
+	//const float timeStep = 0.01f;
+	//float accumulator = 0.0f;
+	//float currentTime = BCUtils::TimeInSeconds();
 
-	int frameNum = 0;
+	int ticksPerFrame = 1000 / renderWindow.GetRefreshRate();
+
+	int frameCount = 0;
 
 	while (gameRunning)
 	{
 		int startTicks = SDL_GetTicks();
 
-		float newTime = BCUtils::TimeInSeconds();
-		float frameTime = newTime - currentTime;
+		//float newTime = BCUtils::TimeInSeconds();
+		//float frameTime = newTime - currentTime;
 
-		currentTime = newTime;
-		accumulator += frameTime;
+		//currentTime = newTime;
+		//accumulator += frameTime;
 
-		while (accumulator >= timeStep)
+		//while (accumulator >= timeStep)
+		//{
+		//	//PollEvent loop here
+		//	accumulator -= timeStep;
+		//}
+
+		while (SDL_PollEvent(&event))
 		{
-			while (SDL_PollEvent(&event))
-			{
-				if (event.type == SDL_QUIT)
-					gameRunning = false;
-			}
+			if (event.type == SDL_QUIT)
+				gameRunning = false;
 
 			if (event.type == SDL_KEYDOWN)
 			{
@@ -146,11 +151,9 @@ void TextureDemo()
 					break;
 				}
 			}
-
-			accumulator -= timeStep;
 		}
 
-		const float alpha = accumulator / timeStep; //What % of a timeStep has accumulated
+		//const float alpha = accumulator / timeStep; //What % of a timeStep has accumulated
 
 		//std::cout << "alpha: " << alpha << std::endl;
 
@@ -167,21 +170,26 @@ void TextureDemo()
 		//TODO: Make this input less cringe/maybe move file back into function
 		//Maybe make fonts folder in Engine project? Needs to be generic to not be gross
 		if (showDebugInfo)
-			renderWindow.DisplayDebugInfo("src/res/fonts/OpenSans-Regular.ttf");
+			renderWindow.DisplayDebugInfo("src/res/fonts/OpenSans-Regular.ttf", frameCount);
 
 		//std::cout << BCUtils::TimeInSeconds() << std::endl;
 
 		renderWindow.DisplayTextures();
 
-		int frameTicks = SDL_GetTicks() - startTicks;
-
 		//std::cout << "Frame Number: " << frameNum << " Current Time: " << BCUtils::TimeInSeconds() << std::endl;
 
-		frameNum++;
+		frameCount++;
 
-		if (frameTicks < (1000 / windowRefreshRate))
+		//std::cout << "Frame: " << frameCount << "/" << windowRefreshRate << std::endl;
+
+		if (frameCount >= renderWindow.GetRefreshRate())
+			frameCount = 0;
+
+		int frameTicks = SDL_GetTicks() - startTicks;
+
+		if (frameTicks < ticksPerFrame)
 		{
-			SDL_Delay((1000 / windowRefreshRate) - frameTicks);
+			SDL_Delay(ticksPerFrame - frameTicks);
 		}
 	}
 
@@ -191,7 +199,8 @@ void TextureDemo()
 /*Misc TODO List :
  - Reorganize file structure in BCEngine (Folders, etc)
  - Move RectDemo somewhere else
-
+ - There's a memory leak somewhere (RAM usage constantly goes up)
+   maybe need to free entity textures? maybe coming from debug info function
 */
 int main(int argc, char* argv[])
 {

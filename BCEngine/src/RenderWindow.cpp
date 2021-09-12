@@ -33,26 +33,40 @@ namespace BCEngine
 		return mode.refresh_rate;
 	}
 
-	void RenderWindow::DisplayDebugInfo(const char* fontPath)
+	std::string RenderWindow::GetFpsDisplay(int currentFrame, int fpsCap)
+	{
+		//TODO: Improve string formatting here (maybe easy way to add leading zeroes)
+		if (currentFrame < 10)
+			return "00" + std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+		else if (currentFrame < 100)
+			return "0" + std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+		else
+			return std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+	}
+
+	void RenderWindow::DisplayDebugInfo(const char* fontPath, int currentFrame)
 	{
 		int refreshRate = GetRefreshRate();
 		std::string displayRefreshRate = "Refresh Rate: " + std::to_string(refreshRate);
+		std::string displayFps = "FPS: " + GetFpsDisplay(currentFrame, refreshRate);
+		std::string displayTime = "Time: " + std::to_string(BCUtils::TimeInSeconds());
+		std::string debugInfo = displayRefreshRate + "|" + displayFps + "|" + displayTime;
 
 		//TODO: Make surface/message member variables (Make toggleable debug info)
-		TTF_Font* font = TTF_OpenFont(fontPath, 24);
+		TTF_Font* font = TTF_OpenFont(fontPath, 16);
 
 		if (font == NULL)
 			std::cout << "Font Error: " << TTF_GetError() << std::endl;
 
 		SDL_Color White = { 255, 255, 255 };
 		SDL_Surface* surfaceMessage =
-			TTF_RenderText_Solid(font, displayRefreshRate.c_str(), White);
+			TTF_RenderText_Solid(font, debugInfo.c_str(), White);
 		SDL_Texture* Message = SDL_CreateTextureFromSurface(m_renderer, surfaceMessage);
 
 		SDL_Rect Message_rect; //create a rect
 		Message_rect.x = 0;  //controls the rect's x coordinate 
 		Message_rect.y = 0; // controls the rect's y coordinte
-		Message_rect.w = 120; // controls the width of the rect
+		Message_rect.w = 400; // controls the width of the rect
 		Message_rect.h = 40; // controls the height of the rect
 
 		SDL_RenderCopy(m_renderer, Message, NULL, &Message_rect);

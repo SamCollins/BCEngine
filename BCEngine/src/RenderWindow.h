@@ -7,6 +7,8 @@
 #include <iostream>
 #include <string>
 
+#include "BCUtils.h"
+
 #include "Entity.h";
 
 namespace BCEngine
@@ -16,10 +18,10 @@ namespace BCEngine
 	public:
 		RenderWindow(const char* windowTitle, int width, int height);
 
-		//Texture Functions
 		void ClearScreen();
 		int GetRefreshRate();
-		void DisplayDebugInfo(const char* fontPath);
+		std::string GetFpsDisplay(int currentFrame, int fpsCap);
+		void DisplayDebugInfo(const char* fontPath, int currentFrame);
 
 		SDL_Texture* LoadTexture(const char* filePath);
 		void RenderTexture(SDL_Texture* p_texture);
