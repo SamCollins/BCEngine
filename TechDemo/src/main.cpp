@@ -16,7 +16,7 @@ void RectDemo()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	BCEngine::RenderWindow renderWindow("Rect Demo", 600, 600);
+	BCEngine::RenderWindow renderWindow("Rect Demo", 600, 600, "");
 
 	bool gameRunning = true;
 	SDL_Event event;
@@ -79,7 +79,7 @@ void TextureDemo()
 	const int WINDOW_WIDTH = 512;
 	const int WINDOW_HEIGHT = 512;
 
-	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
+	BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
 	//int windowRefreshRate = renderWindow.GetRefreshRate();
 
 	//TODO: Make better way of knowing size of tile/texture
@@ -170,7 +170,7 @@ void TextureDemo()
 		//TODO: Make this input less cringe/maybe move file back into function
 		//Maybe make fonts folder in Engine project? Needs to be generic to not be gross
 		if (showDebugInfo)
-			renderWindow.DisplayDebugInfo("src/res/fonts/OpenSans-Regular.ttf", frameCount);
+			renderWindow.DisplayDebugInfo(frameCount);
 
 		//std::cout << BCUtils::TimeInSeconds() << std::endl;
 

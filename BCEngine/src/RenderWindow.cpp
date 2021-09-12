@@ -2,8 +2,8 @@
 
 namespace BCEngine
 {
-	RenderWindow::RenderWindow(const char* windowTitle, int width, int height)
-		:m_window(NULL), m_renderer(NULL), m_rect()
+	RenderWindow::RenderWindow(const char* windowTitle, int width, int height, const char* debugInfoFontPath)
+		:m_window(NULL), m_renderer(NULL), m_rect(), m_debugInfoFont(NULL)
 	{
 		m_window = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			width, height, SDL_WINDOW_SHOWN);
@@ -15,6 +15,12 @@ namespace BCEngine
 
 		if (m_renderer == NULL)
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
+
+		//m_debugInfoFont = TTF_OpenFont("resources/fonts/OpenSans-Regular.ttf", 16);
+		m_debugInfoFont = TTF_OpenFont(debugInfoFontPath, 16);
+
+		if (m_debugInfoFont == NULL)
+			std::cout << "Font Error: " << TTF_GetError() << std::endl;
 	}
 
 	void RenderWindow::ClearScreen()
@@ -44,7 +50,7 @@ namespace BCEngine
 			return std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
 	}
 
-	void RenderWindow::DisplayDebugInfo(const char* fontPath, int currentFrame)
+	void RenderWindow::DisplayDebugInfo(int currentFrame)
 	{
 		int refreshRate = GetRefreshRate();
 		std::string displayRefreshRate = "Refresh Rate: " + std::to_string(refreshRate);
@@ -52,15 +58,9 @@ namespace BCEngine
 		std::string displayTime = "Time: " + std::to_string(BCUtils::TimeInSeconds());
 		std::string debugInfo = displayRefreshRate + "|" + displayFps + "|" + displayTime;
 
-		//TODO: Make surface/message member variables (Make toggleable debug info)
-		TTF_Font* font = TTF_OpenFont(fontPath, 16);
-
-		if (font == NULL)
-			std::cout << "Font Error: " << TTF_GetError() << std::endl;
-
 		SDL_Color White = { 255, 255, 255 };
 		SDL_Surface* surfaceMessage =
-			TTF_RenderText_Solid(font, debugInfo.c_str(), White);
+			TTF_RenderText_Solid(m_debugInfoFont, debugInfo.c_str(), White);
 		SDL_Texture* Message = SDL_CreateTextureFromSurface(m_renderer, surfaceMessage);
 
 		SDL_Rect Message_rect; //create a rect

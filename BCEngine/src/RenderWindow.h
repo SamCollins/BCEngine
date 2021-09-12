@@ -16,12 +16,12 @@ namespace BCEngine
 	class RenderWindow
 	{
 	public:
-		RenderWindow(const char* windowTitle, int width, int height);
+		RenderWindow(const char* windowTitle, int width, int height, const char* debugInfoFontPath);
 
 		void ClearScreen();
 		int GetRefreshRate();
 		std::string GetFpsDisplay(int currentFrame, int fpsCap);
-		void DisplayDebugInfo(const char* fontPath, int currentFrame);
+		void DisplayDebugInfo(int currentFrame);
 
 		SDL_Texture* LoadTexture(const char* filePath);
 		void RenderTexture(SDL_Texture* p_texture);
@@ -40,5 +40,8 @@ namespace BCEngine
 		SDL_Renderer* m_renderer;
 
 		SDL_Rect m_rect;
+
+		//Debug Info
+		TTF_Font* m_debugInfoFont;
 	};
 }
