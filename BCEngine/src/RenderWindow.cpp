@@ -33,6 +33,34 @@ namespace BCEngine
 		return mode.refresh_rate;
 	}
 
+	void RenderWindow::DisplayDebugInfo(const char* fontPath)
+	{
+		int refreshRate = GetRefreshRate();
+		std::string displayRefreshRate = "Refresh Rate: " + std::to_string(refreshRate);
+
+		//TODO: Make surface/message member variables (Make toggleable debug info)
+		TTF_Font* font = TTF_OpenFont(fontPath, 24);
+
+		if (font == NULL)
+			std::cout << "Font Error: " << TTF_GetError() << std::endl;
+
+		SDL_Color White = { 255, 255, 255 };
+		SDL_Surface* surfaceMessage =
+			TTF_RenderText_Solid(font, displayRefreshRate.c_str(), White);
+		SDL_Texture* Message = SDL_CreateTextureFromSurface(m_renderer, surfaceMessage);
+
+		SDL_Rect Message_rect; //create a rect
+		Message_rect.x = 0;  //controls the rect's x coordinate 
+		Message_rect.y = 0; // controls the rect's y coordinte
+		Message_rect.w = 120; // controls the width of the rect
+		Message_rect.h = 40; // controls the height of the rect
+
+		SDL_RenderCopy(m_renderer, Message, NULL, &Message_rect);
+
+		SDL_FreeSurface(surfaceMessage);
+		SDL_DestroyTexture(Message);
+	}
+
 	SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
 	{
 		SDL_Texture* texture = NULL;

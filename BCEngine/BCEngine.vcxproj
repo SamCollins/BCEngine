@@ -32,8 +32,15 @@
     <ClCompile Include="src\RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="libfreetype-6.dll" />
+    <None Include="libjpeg-9.dll" />
+    <None Include="libpng16-16.dll" />
+    <None Include="libtiff-5.dll" />
+    <None Include="libwebp-7.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
+    <None Include="SDL2_ttf.dll" />
+    <None Include="zlib1.dll" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -113,7 +120,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +137,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,7 +152,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;C:\Development\CppProjects\Libraries\SDL2-2.0.16\include;C:\Development\CppProjects\Libraries\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;C:\Development\CppProjects\Libraries\SDL2-2.0.16\include;C:\Development\CppProjects\Libraries\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -162,7 +169,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

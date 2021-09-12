@@ -73,6 +73,8 @@ void RectDemo()
 void TextureDemo()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
+	if (TTF_Init() == -1)
+		std::cout << "TTF Failed to Initialize: " <<  TTF_GetError() << std::endl;
 
 	const int WINDOW_WIDTH = 512;
 	const int WINDOW_HEIGHT = 512;
@@ -106,6 +108,8 @@ void TextureDemo()
 	bool gameRunning = true;
 	SDL_Event event;
 
+	bool showDebugInfo = false;
+
 	//timeStep == deltaTime
 	const float timeStep = 0.01f;
 	float accumulator = 0.0f;
@@ -131,12 +135,24 @@ void TextureDemo()
 					gameRunning = false;
 			}
 
+			if (event.type == SDL_KEYDOWN)
+			{
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_F3:
+					showDebugInfo = !showDebugInfo;
+					break;
+				default:
+					break;
+				}
+			}
+
 			accumulator -= timeStep;
 		}
 
 		const float alpha = accumulator / timeStep; //What % of a timeStep has accumulated
 
-		std::cout << "alpha: " << alpha << std::endl;
+		//std::cout << "alpha: " << alpha << std::endl;
 
 		renderWindow.ClearScreen();
 
@@ -148,13 +164,18 @@ void TextureDemo()
 			renderWindow.RenderEntity(tile);
 		}
 
+		//TODO: Make this input less cringe/maybe move file back into function
+		//Maybe make fonts folder in Engine project? Needs to be generic to not be gross
+		if (showDebugInfo)
+			renderWindow.DisplayDebugInfo("src/res/fonts/OpenSans-Regular.ttf");
+
 		//std::cout << BCUtils::TimeInSeconds() << std::endl;
 
 		renderWindow.DisplayTextures();
 
 		int frameTicks = SDL_GetTicks() - startTicks;
 
-		std::cout << "Frame Number: " << frameNum << " Current Time: " << BCUtils::TimeInSeconds() << std::endl;
+		//std::cout << "Frame Number: " << frameNum << " Current Time: " << BCUtils::TimeInSeconds() << std::endl;
 
 		frameNum++;
 

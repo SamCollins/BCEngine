@@ -36,5 +36,10 @@
     <None Include="libwebp-7.dll" />
     <None Include="zlib1.dll" />
     <None Include="src\res\dev\hulking_knight.ase" />
+    <None Include="SDL2_ttf.dll" />
+    <None Include="libfreetype-6.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="src\res\fonts\OpenSans-Regular.ttf" />
   </ItemGroup>
 </Project>

@@ -2,8 +2,10 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 
 #include <iostream>
+#include <string>
 
 #include "Entity.h";
 
@@ -17,6 +19,7 @@ namespace BCEngine
 		//Texture Functions
 		void ClearScreen();
 		int GetRefreshRate();
+		void DisplayDebugInfo(const char* fontPath);
 
 		SDL_Texture* LoadTexture(const char* filePath);
 		void RenderTexture(SDL_Texture* p_texture);
