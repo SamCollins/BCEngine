@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\demos\EntityDemo.cpp" />
+    <ClCompile Include="src\demos\RectDemo.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="src\res\fonts\OpenSans-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\demos\EntityDemo.h" />
+    <ClInclude Include="src\demos\RectDemo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
