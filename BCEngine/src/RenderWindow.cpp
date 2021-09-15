@@ -31,9 +31,7 @@ namespace BCEngine
 	int RenderWindow::GetRefreshRate()
 	{
 		int displayIndex = SDL_GetWindowDisplayIndex(m_window);
-
 		SDL_DisplayMode mode;
-
 		SDL_GetDisplayMode(displayIndex, 0, &mode);
 
 		return mode.refresh_rate;
@@ -41,13 +39,15 @@ namespace BCEngine
 
 	std::string RenderWindow::GetFpsDisplay(int currentFrame, int fpsCap)
 	{
-		//TODO: Improve string formatting here (maybe easy way to add leading zeroes)
+		std::string displayFrame = std::to_string(currentFrame);
+		std::string displayFpsCap = std::to_string(fpsCap);
+
 		if (currentFrame < 10)
-			return "00" + std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+			return std::format("00{}/{}", displayFrame, displayFpsCap);
 		else if (currentFrame < 100)
-			return "0" + std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+			return std::format("0{}/{}", displayFrame, displayFpsCap);
 		else
-			return std::to_string(currentFrame) + "/" + std::to_string(fpsCap);
+			return std::format("{}/{}", displayFrame, displayFpsCap);
 	}
 
 	void RenderWindow::DisplayDebugInfo(int currentFrame)

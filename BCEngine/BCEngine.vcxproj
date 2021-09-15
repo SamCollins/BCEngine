@@ -121,6 +121,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,6 +139,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +155,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>G:\Cpp_Libraries\SDL2-2.0.14\include;C:\Development\CppProjects\Libraries\SDL2-2.0.16\include;C:\Development\CppProjects\Libraries\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories);G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,6 +173,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>;G:\Cpp_Libraries\SDL2_image-2.0.5\include;G:\Cpp_Libraries\SDL2_ttf-2.0.15\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

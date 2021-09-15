@@ -18,7 +18,7 @@ namespace Demos
 		const int WINDOW_WIDTH = 512;
 		const int WINDOW_HEIGHT = 512;
 
-		BCEngine::RenderWindow renderWindow("Texture Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
+		BCEngine::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
 
 		//TODO: Make better way of knowing size of tile/texture
 		float grassWidth = 32;
@@ -41,30 +41,18 @@ namespace Demos
 
 		bool showDebugInfo = false;
 
-		//timeStep == deltaTime
-		//const float timeStep = 0.01f;
-		//float accumulator = 0.0f;
-		//float currentTime = BCUtils::TimeInSeconds();
-
-		int ticksPerFrame = 1000 / renderWindow.GetRefreshRate();
-
 		int frameCount = 0;
 
 		while (gameRunning)
 		{
+			int currentFps = renderWindow.GetRefreshRate();
+			//int currentFps = 10;
+			int ticksPerFrame = 1000 / currentFps;
+			double deltaTime = 1.0 / currentFps;
+
+			//Deleted all the accumulator/timestep stuff from tutorial
+			//TODO: Rework to account for variable frame rates (Not locked at refresh rate)
 			int startTicks = SDL_GetTicks();
-
-			//float newTime = BCUtils::TimeInSeconds();
-			//float frameTime = newTime - currentTime;
-
-			//currentTime = newTime;
-			//accumulator += frameTime;
-
-			//while (accumulator >= timeStep)
-			//{
-			//	//PollEvent loop here
-			//	accumulator -= timeStep;
-			//}
 
 			while (SDL_PollEvent(&event))
 			{
@@ -98,12 +86,12 @@ namespace Demos
 
 			frameCount++;
 
-			if (frameCount >= renderWindow.GetRefreshRate())
+			if (frameCount >= currentFps)
 				frameCount = 0;
 
 			int frameTicks = SDL_GetTicks() - startTicks;
 
-			std::cout << "Ticks taken this frame: " << frameTicks << std::endl;
+			//std::cout << "Ticks taken this frame: " << frameTicks << std::endl;
 
 			if (frameTicks < ticksPerFrame)
 			{
