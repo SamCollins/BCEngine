@@ -2,10 +2,10 @@
 
 namespace BCEngine
 {
-	RenderWindow::RenderWindow(const char* windowTitle, int width, int height, const char* debugInfoFontPath)
+	RenderWindow::RenderWindow(std::string windowTitle, int width, int height, std::string debugInfoFontPath)
 		:m_window(NULL), m_renderer(NULL), m_rect(), m_debugInfoFont(NULL)
 	{
-		m_window = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		m_window = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			width, height, SDL_WINDOW_SHOWN);
 
 		if (m_window == NULL)
@@ -17,7 +17,7 @@ namespace BCEngine
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
 
 		//m_debugInfoFont = TTF_OpenFont("resources/fonts/OpenSans-Regular.ttf", 16);
-		m_debugInfoFont = TTF_OpenFont(debugInfoFontPath, 16);
+		m_debugInfoFont = TTF_OpenFont(debugInfoFontPath.c_str(), 16);
 
 		if (m_debugInfoFont == NULL)
 			std::cout << "Font Error: " << TTF_GetError() << std::endl;
@@ -75,10 +75,10 @@ namespace BCEngine
 		SDL_DestroyTexture(Message);
 	}
 
-	SDL_Texture* RenderWindow::LoadTexture(const char* filePath)
+	SDL_Texture* RenderWindow::LoadTexture(std::string filePath)
 	{
 		SDL_Texture* texture = NULL;
-		texture = IMG_LoadTexture(m_renderer, filePath);
+		texture = IMG_LoadTexture(m_renderer, filePath.c_str());
 
 		if (texture == NULL)
 		{
