@@ -20,14 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BCUtils.h" />
-    <ClInclude Include="src\Engine.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\InputBuffer.h" />
     <ClInclude Include="src\Physics.h" />
     <ClInclude Include="src\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\InputBuffer.cpp" />
     <ClCompile Include="src\Physics.cpp" />

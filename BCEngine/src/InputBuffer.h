@@ -11,11 +11,11 @@ namespace BCEngine
 	{
 	public:
 		InputBuffer();
-		void AddToBuffer(SDL_EventType input);
-		SDL_EventType GetInput();
+		void AddToBuffer(SDL_Keycode input);
+		SDL_Keycode GetInput();
 		void ClearBuffer();
 		void PrintBufferContents();
 	private:
-		std::queue<SDL_EventType> m_buffer;
+		std::queue<SDL_Keycode> m_buffer;
 	};
 }

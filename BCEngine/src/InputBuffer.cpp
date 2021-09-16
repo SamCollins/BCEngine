@@ -8,14 +8,14 @@ namespace BCEngine
 
 	}
 
-	void InputBuffer::AddToBuffer(SDL_EventType input)
+	void InputBuffer::AddToBuffer(SDL_Keycode input)
 	{
 		m_buffer.push(input);
 	}
 
-	SDL_EventType InputBuffer::GetInput()
+	SDL_Keycode InputBuffer::GetInput()
 	{
-		SDL_EventType queuedInput = m_buffer.front();
+		SDL_Keycode queuedInput = m_buffer.front();
 		m_buffer.pop();
 		return queuedInput;
 	}
@@ -35,7 +35,7 @@ namespace BCEngine
 		std::cout << "Buffer Contents:" << std::endl;
 		while (!tempQueue.empty())
 		{
-			std::cout << tempQueue.front() << ", ";
+			std::cout << SDL_GetKeyName(tempQueue.front()) << " ";
 			tempQueue.pop();
 		}
 		std::cout << std::endl;

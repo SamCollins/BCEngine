@@ -6,7 +6,7 @@ namespace Demos
 	{}
 
 	/*TODO List
-	- Figure out better way of passinf fontPath into constructor
+	- Figure out better way of passing fontPath into constructor
 	- Seperate out Init stuff into function (Maybe Init debug info for font path?)
 	*/
 	void EntityDemo::Start()
@@ -38,10 +38,10 @@ namespace Demos
 
 		bool gameRunning = true;
 		SDL_Event event;
-
 		bool showDebugInfo = false;
-
 		int frameCount = 0;
+
+		BCEngine::InputBuffer inputBuffer;
 
 		while (gameRunning)
 		{
@@ -61,10 +61,18 @@ namespace Demos
 
 				if (event.type == SDL_KEYDOWN)
 				{
+					inputBuffer.AddToBuffer(event.key.keysym.sym);
+
 					switch (event.key.keysym.sym)
 					{
 					case SDLK_F3:
 						showDebugInfo = !showDebugInfo;
+						break;
+					case SDLK_F5:
+						inputBuffer.PrintBufferContents();
+						break;
+					case SDLK_F6:
+						inputBuffer.ClearBuffer();
 						break;
 					default:
 						break;
