@@ -5,11 +5,13 @@ namespace BCEngine
 	Entity::Entity(Vector2f position, SDL_Texture* texture)
 		:position(position), texture(texture)
 	{
-		//TODO: Make this better, maybe pass Rect in through params
+		SDL_Point textureSize;
+		SDL_QueryTexture(texture, NULL, NULL, &textureSize.x, &textureSize.y);
+
 		currentFrame.x = 0;
 		currentFrame.y = 0;
-		currentFrame.w = 32;
-		currentFrame.h = 32;
+		currentFrame.w = textureSize.x;
+		currentFrame.h = textureSize.y;
 	}
 
 	#pragma region Getters
@@ -27,6 +29,12 @@ namespace BCEngine
 	Vector2f& Entity::GetPosition()
 	{
 		return position;
+	}
+
+	void Entity::UpdatePosition(float deltaTime)
+	{
+		float speed = 2 * deltaTime;
+		position.y += position.y * speed;
 	}
 
 	SDL_Rect Entity::GetCurrentFrame()

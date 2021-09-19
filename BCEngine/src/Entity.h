@@ -15,6 +15,7 @@ namespace BCEngine
 		/*double GetXPosition();
 		double GetYPosition();*/
 		Vector2f& GetPosition();
+		void UpdatePosition(float deltaTime);
 		SDL_Rect GetCurrentFrame();
 		SDL_Texture* GetTexture();
 	private:

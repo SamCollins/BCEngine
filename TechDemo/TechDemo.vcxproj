@@ -29,6 +29,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="src\res\gfx\box_1.png" />
     <Image Include="src\res\gfx\ground_grass_1.png" />
     <Image Include="src\res\gfx\hulking_knight.png" />
   </ItemGroup>

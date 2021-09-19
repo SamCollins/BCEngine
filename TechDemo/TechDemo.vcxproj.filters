@@ -32,6 +32,9 @@
     <Image Include="src\res\gfx\hulking_knight.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="src\res\gfx\box_1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />

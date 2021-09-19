@@ -28,13 +28,15 @@ namespace Demos
 		const int num_tiles = WINDOW_WIDTH / grassWidth;
 
 		SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
+		SDL_Texture* boxTexture = renderWindow.LoadTexture("src/res/gfx/box_1.png");
 
 		std::vector<BCEngine::Entity> grassTiles;
-
 		for (int i = 0; i < num_tiles; i++)
 		{
 			grassTiles.push_back(BCEngine::Entity(BCEngine::Vector2f(grassWidth * i, floorHeight), grassTexture));
 		}
+
+		BCEngine::Entity box(BCEngine::Vector2f(200.0, 1.0), boxTexture);
 
 		bool gameRunning = true;
 		SDL_Event event;
@@ -48,7 +50,7 @@ namespace Demos
 			int currentFps = renderWindow.GetRefreshRate();
 			//int currentFps = 10;
 			int ticksPerFrame = 1000 / currentFps;
-			double deltaTime = 1.0 / currentFps;
+			float deltaTime = 1.0 / currentFps;
 
 			//Deleted all the accumulator/timestep stuff from tutorial
 			//TODO: Rework to account for variable frame rates (Not locked at refresh rate)
@@ -80,12 +82,17 @@ namespace Demos
 				}
 			}
 
+			box.UpdatePosition(deltaTime);
+			box.GetPosition().PrintData();
+
 			renderWindow.ClearScreen();
 
 			for (auto& tile : grassTiles)
 			{
 				renderWindow.RenderEntity(tile);
 			}
+
+			renderWindow.RenderEntity(box);
 
 			if (showDebugInfo)
 				renderWindow.DisplayDebugInfo(frameCount);
