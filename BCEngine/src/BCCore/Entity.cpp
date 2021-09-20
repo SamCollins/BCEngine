@@ -2,16 +2,16 @@
 
 namespace BCCore
 {
-	Entity::Entity(BCSim::Vector2f position, SDL_Texture* texture)
-		:position(position), texture(texture)
+	Entity::Entity(BCSim::Vector2d position, SDL_Texture* texture)
+		:m_position(position), m_texture(texture)
 	{
 		SDL_Point textureSize;
 		SDL_QueryTexture(texture, NULL, NULL, &textureSize.x, &textureSize.y);
 
-		currentFrame.x = 0;
-		currentFrame.y = 0;
-		currentFrame.w = textureSize.x;
-		currentFrame.h = textureSize.y;
+		m_currentFrame.x = 0;
+		m_currentFrame.y = 0;
+		m_currentFrame.w = textureSize.x;
+		m_currentFrame.h = textureSize.y;
 	}
 
 	#pragma region Getters
@@ -26,25 +26,41 @@ namespace BCCore
 		return y_pos;
 	}*/
 
-	BCSim::Vector2f& Entity::GetPosition()
+	BCSim::Vector2d& Entity::GetPosition()
 	{
-		return position;
+		return m_position;
 	}
 
-	void Entity::UpdatePosition(float deltaTime)
+	void Entity::CalculatePosition(BCSim::Vector2d force, double deltaTime)
 	{
-		float speed = 2 * deltaTime;
-		position.y += position.y * speed;
+		//TODO: Figure out what to do here
+
+		double horizontalForce = force.x * deltaTime;
+		double verticalForce = force.y * deltaTime;
+
+		//This rapidly accelerates
+		/*m_position.x += m_position.x * horizontalForce;
+		m_position.y += m_position.y * verticalForce;*/
+
+		m_position.x += horizontalForce;
+		m_position.y += verticalForce;
+
+		//Vector2d newPostion();
+	}
+
+	void Entity::UpdatePosition(BCSim::Vector2d position)
+	{
+		position = position;
 	}
 
 	SDL_Rect Entity::GetCurrentFrame()
 	{
-		return currentFrame;
+		return m_currentFrame;
 	}
 
 	SDL_Texture* Entity::GetTexture()
 	{
-		return texture;
+		return m_texture;
 	}
 
 	#pragma endregion

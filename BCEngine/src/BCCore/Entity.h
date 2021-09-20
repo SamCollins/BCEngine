@@ -10,18 +10,19 @@ namespace BCCore
 	class Entity
 	{
 	public:
-		Entity(BCSim::Vector2f position, SDL_Texture* texture);
+		Entity(BCSim::Vector2d position, SDL_Texture* texture);
 
 		/*double GetXPosition();
 		double GetYPosition();*/
-		BCSim::Vector2f& GetPosition();
-		void UpdatePosition(float deltaTime);
+		BCSim::Vector2d& GetPosition();
+		void CalculatePosition(BCSim::Vector2d force, double deltaTime);
+		void UpdatePosition(BCSim::Vector2d position);
 		SDL_Rect GetCurrentFrame();
 		SDL_Texture* GetTexture();
 	private:
 		//double x_pos, y_pos;
-		BCSim::Vector2f position;
-		SDL_Rect currentFrame;
-		SDL_Texture* texture;
+		BCSim::Vector2d m_position;
+		SDL_Rect m_currentFrame;
+		SDL_Texture* m_texture;
 	};
 }
