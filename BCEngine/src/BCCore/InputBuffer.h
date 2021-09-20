@@ -5,7 +5,7 @@
 #include <iostream>
 #include <queue>
 
-namespace BCEngine
+namespace BCCore
 {
 	class InputBuffer
 	{

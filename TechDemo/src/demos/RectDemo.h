@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "RenderWindow.h"
+#include "BCCore/RenderWindow.h"
 
 namespace Demos
 {

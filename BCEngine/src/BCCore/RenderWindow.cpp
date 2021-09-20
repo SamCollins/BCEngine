@@ -1,6 +1,6 @@
 #include "RenderWindow.h"
 
-namespace BCEngine
+namespace BCCore
 {
 	RenderWindow::RenderWindow(std::string windowTitle, int width, int height, std::string debugInfoFontPath)
 		:m_window(NULL), m_renderer(NULL), m_rect(), m_debugInfoFont(NULL)

@@ -9,7 +9,7 @@ namespace Demos
 	{
 		SDL_Init(SDL_INIT_EVERYTHING);
 
-		BCEngine::RenderWindow renderWindow("Rect Demo", 600, 600, "");
+		BCCore::RenderWindow renderWindow("Rect Demo", 600, 600, "");
 
 		bool gameRunning = true;
 		SDL_Event event;

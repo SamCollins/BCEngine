@@ -15,33 +15,39 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\RenderWindow.h">
+    <ClInclude Include="src\BCCore\RenderWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Entity.h">
+    <ClInclude Include="src\BCCore\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Physics.h">
+    <ClInclude Include="src\BCSim\Physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\BCUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\InputBuffer.h">
+    <ClInclude Include="src\BCCore\InputBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BCSim\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\RenderWindow.cpp">
+    <ClCompile Include="src\BCCore\RenderWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entity.cpp">
+    <ClCompile Include="src\BCCore\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Physics.cpp">
+    <ClCompile Include="src\BCSim\Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InputBuffer.cpp">
+    <ClCompile Include="src\BCCore\InputBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BCSim\Environment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

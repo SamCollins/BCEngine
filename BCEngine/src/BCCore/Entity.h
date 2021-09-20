@@ -3,24 +3,24 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "Physics.h"
+#include "../BCSim/Physics.h"
 
-namespace BCEngine
+namespace BCCore
 {
 	class Entity
 	{
 	public:
-		Entity(Vector2f position, SDL_Texture* texture);
+		Entity(BCSim::Vector2f position, SDL_Texture* texture);
 
 		/*double GetXPosition();
 		double GetYPosition();*/
-		Vector2f& GetPosition();
+		BCSim::Vector2f& GetPosition();
 		void UpdatePosition(float deltaTime);
 		SDL_Rect GetCurrentFrame();
 		SDL_Texture* GetTexture();
 	private:
 		//double x_pos, y_pos;
-		Vector2f position;
+		BCSim::Vector2f position;
 		SDL_Rect currentFrame;
 		SDL_Texture* texture;
 	};

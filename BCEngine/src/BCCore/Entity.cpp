@@ -1,8 +1,8 @@
 #include "Entity.h";
 
-namespace BCEngine
+namespace BCCore
 {
-	Entity::Entity(Vector2f position, SDL_Texture* texture)
+	Entity::Entity(BCSim::Vector2f position, SDL_Texture* texture)
 		:position(position), texture(texture)
 	{
 		SDL_Point textureSize;
@@ -26,7 +26,7 @@ namespace BCEngine
 		return y_pos;
 	}*/
 
-	Vector2f& Entity::GetPosition()
+	BCSim::Vector2f& Entity::GetPosition()
 	{
 		return position;
 	}

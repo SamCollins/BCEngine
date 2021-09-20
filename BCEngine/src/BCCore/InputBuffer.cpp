@@ -1,6 +1,6 @@
 #include "InputBuffer.h"
 
-namespace BCEngine
+namespace BCCore
 {
 	InputBuffer::InputBuffer()
 		:m_buffer()

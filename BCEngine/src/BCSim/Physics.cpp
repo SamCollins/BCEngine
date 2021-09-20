@@ -1,6 +1,6 @@
 #include "Physics.h"
 
-namespace BCEngine
+namespace BCSim
 {
 	Vector2f::Vector2f()
 		:x(0.0f), y(0.0f)

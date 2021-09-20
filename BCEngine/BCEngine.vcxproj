@@ -19,17 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\BCSim\Environment.h" />
     <ClInclude Include="src\BCUtils.h" />
-    <ClInclude Include="src\Entity.h" />
-    <ClInclude Include="src\InputBuffer.h" />
-    <ClInclude Include="src\Physics.h" />
-    <ClInclude Include="src\RenderWindow.h" />
+    <ClInclude Include="src\BCCore\Entity.h" />
+    <ClInclude Include="src\BCCore\InputBuffer.h" />
+    <ClInclude Include="src\BCSim\Physics.h" />
+    <ClInclude Include="src\BCCore\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Entity.cpp" />
-    <ClCompile Include="src\InputBuffer.cpp" />
-    <ClCompile Include="src\Physics.cpp" />
-    <ClCompile Include="src\RenderWindow.cpp" />
+    <ClCompile Include="src\BCSim\Environment.cpp" />
+    <ClCompile Include="src\BCCore\Entity.cpp" />
+    <ClCompile Include="src\BCCore\InputBuffer.cpp" />
+    <ClCompile Include="src\BCSim\Physics.cpp" />
+    <ClCompile Include="src\BCCore\RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll" />

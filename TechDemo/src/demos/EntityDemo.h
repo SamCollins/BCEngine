@@ -9,10 +9,10 @@
 
 #include "BCUtils.h"
 
-#include "RenderWindow.h"
-#include "InputBuffer.h"
-#include "Entity.h"
-#include "Physics.h"
+#include "BCCore/RenderWindow.h"
+#include "BCCore/InputBuffer.h"
+#include "BCCore/Entity.h"
+#include "BCSim/Physics.h"
 
 namespace Demos
 {

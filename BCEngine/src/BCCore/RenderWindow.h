@@ -8,11 +8,11 @@
 #include <string>
 #include <format>
 
-#include "BCUtils.h"
+#include "../BCUtils.h"
 
 #include "Entity.h";
 
-namespace BCEngine
+namespace BCCore
 {
 	class RenderWindow
 	{

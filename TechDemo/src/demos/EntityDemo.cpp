@@ -18,7 +18,7 @@ namespace Demos
 		const int WINDOW_WIDTH = 512;
 		const int WINDOW_HEIGHT = 512;
 
-		BCEngine::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
+		BCCore::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
 
 		//TODO: Make better way of knowing size of tile/texture
 		float grassWidth = 32;
@@ -30,20 +30,20 @@ namespace Demos
 		SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 		SDL_Texture* boxTexture = renderWindow.LoadTexture("src/res/gfx/box_1.png");
 
-		std::vector<BCEngine::Entity> grassTiles;
+		std::vector<BCCore::Entity> grassTiles;
 		for (int i = 0; i < num_tiles; i++)
 		{
-			grassTiles.push_back(BCEngine::Entity(BCEngine::Vector2f(grassWidth * i, floorHeight), grassTexture));
+			grassTiles.push_back(BCCore::Entity(BCSim::Vector2f(grassWidth * i, floorHeight), grassTexture));
 		}
 
-		BCEngine::Entity box(BCEngine::Vector2f(200.0, 1.0), boxTexture);
+		BCCore::Entity box(BCSim::Vector2f(200.0, 1.0), boxTexture);
 
 		bool gameRunning = true;
 		SDL_Event event;
 		bool showDebugInfo = false;
 		int frameCount = 0;
 
-		BCEngine::InputBuffer inputBuffer;
+		BCCore::InputBuffer inputBuffer;
 
 		while (gameRunning)
 		{
