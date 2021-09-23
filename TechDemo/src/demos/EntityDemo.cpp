@@ -3,7 +3,31 @@
 namespace Demos
 {
 	EntityDemo::EntityDemo()
+		:g_showFpsInfo(false), g_showInputInfo(false)
 	{}
+
+	void EntityDemo::ResolveInput()
+	{
+		SDL_Keycode keyCode = g_inputBuffer.GetInput();
+		switch (keyCode)
+		{
+		case SDLK_F3:
+			g_showFpsInfo = !g_showFpsInfo;
+			break;
+		case SDLK_F4:
+			g_showInputInfo = !g_showInputInfo;
+			break;
+		case SDLK_F5:
+			g_inputBuffer.PrintBufferContents();
+			break;
+		case SDLK_F6:
+			g_inputBuffer.ClearBuffer();
+			break;
+		default:
+			if (g_showInputInfo) std::cout << "Output: " << SDL_GetKeyName(keyCode) << std::endl;
+			break;
+		}
+	}
 
 	/*TODO List
 	- Figure out better way of passing fontPath into constructor
@@ -43,15 +67,15 @@ namespace Demos
 
 		bool gameRunning = true;
 		SDL_Event event;
-		bool showDebugInfo = false;
+		//bool showDebugInfo = false;
 		int frameCount = 0;
 
-		BCCore::InputBuffer inputBuffer;
+		//BCCore::InputBuffer inputBuffer;
 
 		while (gameRunning)
 		{
 			int currentFps = renderWindow.GetRefreshRate();
-			//int currentFps = 10;
+			//int currentFps = 1;
 			int ticksPerFrame = 1000 / currentFps;
 			double deltaTime = 1.0 / currentFps;
 
@@ -66,9 +90,10 @@ namespace Demos
 
 				if (event.type == SDL_KEYDOWN)
 				{
-					inputBuffer.AddToBuffer(event.key.keysym.sym);
+					g_inputBuffer.AddToBuffer(event.key.keysym.sym);
+					if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 
-					switch (event.key.keysym.sym)
+					/*switch (event.key.keysym.sym)
 					{
 					case SDLK_F3:
 						showDebugInfo = !showDebugInfo;
@@ -81,12 +106,15 @@ namespace Demos
 						break;
 					default:
 						break;
-					}
+					}*/
 				}
 			}
 
+			if (g_inputBuffer.HasInputs())
+				ResolveInput();
+
 			enviro.UpdateEntities(deltaTime);
-			box.GetPosition().PrintData();
+			//box.GetPosition().PrintData();
 
 			//box.UpdatePosition(deltaTime);
 			//box.GetPosition().PrintData();
@@ -100,7 +128,7 @@ namespace Demos
 
 			renderWindow.RenderEntity(box);
 
-			if (showDebugInfo)
+			if (g_showFpsInfo)
 				renderWindow.DisplayDebugInfo(frameCount);
 
 			renderWindow.DisplayTextures();

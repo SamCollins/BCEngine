@@ -22,5 +22,10 @@ namespace Demos
 	public:
 		EntityDemo();
 		void Start();
+		void ResolveInput();
+	private:
+		bool g_showFpsInfo;
+		bool g_showInputInfo;
+		BCCore::InputBuffer g_inputBuffer;
 	};
 }

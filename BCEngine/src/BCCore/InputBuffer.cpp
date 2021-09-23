@@ -20,6 +20,11 @@ namespace BCCore
 		return queuedInput;
 	}
 
+	bool InputBuffer::HasInputs()
+	{
+		return !m_buffer.empty();
+	}
+
 	void InputBuffer::ClearBuffer()
 	{
 		while (!m_buffer.empty())

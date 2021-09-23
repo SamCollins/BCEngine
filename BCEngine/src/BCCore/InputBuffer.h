@@ -13,6 +13,7 @@ namespace BCCore
 		InputBuffer();
 		void AddToBuffer(SDL_Keycode input);
 		SDL_Keycode GetInput();
+		bool HasInputs();
 		void ClearBuffer();
 		void PrintBufferContents();
 	private:
