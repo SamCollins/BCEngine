@@ -17,7 +17,9 @@ namespace BCCore
 	class RenderWindow
 	{
 	public:
-		RenderWindow(std::string windowTitle, int width, int height, std::string debugInfoFontPath);
+		RenderWindow(std::string windowTitle, int width, int height);
+
+		void InitDebugFont(std::string fontPath, int fontSize);
 
 		void ClearScreen();
 		int GetRefreshRate();

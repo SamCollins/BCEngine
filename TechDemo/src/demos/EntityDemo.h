@@ -22,10 +22,13 @@ namespace Demos
 	public:
 		EntityDemo();
 		void Start();
+		void ToggleFpsInfo();
+		void ToggleInputInfo();
 		void ResolveInput();
 	private:
 		bool g_showFpsInfo;
 		bool g_showInputInfo;
+		int g_currentFrame;
 		BCCore::InputBuffer g_inputBuffer;
 	};
 }

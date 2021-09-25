@@ -2,7 +2,7 @@
 
 namespace BCCore
 {
-	RenderWindow::RenderWindow(std::string windowTitle, int width, int height, std::string debugInfoFontPath)
+	RenderWindow::RenderWindow(std::string windowTitle, int width, int height)
 		:m_window(NULL), m_renderer(NULL), m_rect(), m_debugInfoFont(NULL)
 	{
 		m_window = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -15,9 +15,11 @@ namespace BCCore
 
 		if (m_renderer == NULL)
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
+	}
 
-		//m_debugInfoFont = TTF_OpenFont("resources/fonts/OpenSans-Regular.ttf", 16);
-		m_debugInfoFont = TTF_OpenFont(debugInfoFontPath.c_str(), 16);
+	void RenderWindow::InitDebugFont(std::string fontPath, int fontSize)
+	{
+		m_debugInfoFont = TTF_OpenFont(fontPath.c_str(), fontSize);
 
 		if (m_debugInfoFont == NULL)
 			std::cout << "Font Error: " << TTF_GetError() << std::endl;

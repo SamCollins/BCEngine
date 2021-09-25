@@ -26,4 +26,12 @@ namespace BCSim
 			entity->CalculatePosition(m_gravity, deltaTime);
 		}
 	}
+
+	/*Environment::~Environment()
+	{
+		for (auto entity : m_entities)
+		{
+			delete entity;
+		}
+	}*/
 }

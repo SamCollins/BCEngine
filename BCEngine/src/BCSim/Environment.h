@@ -16,9 +16,12 @@ namespace BCSim
 	{
 	public:
 		Environment(int width, int height, int floorHeight);
+
 		void SetGravity(Vector2d gravityValue);
 		void AddEntity(BCCore::Entity* entity);
 		void UpdateEntities(double deltaTime);
+
+		//~Environment();
 	private:
 		int m_width;
 		int m_height;

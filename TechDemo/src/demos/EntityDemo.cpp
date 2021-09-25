@@ -3,8 +3,20 @@
 namespace Demos
 {
 	EntityDemo::EntityDemo()
-		:g_showFpsInfo(false), g_showInputInfo(false)
+		:g_showFpsInfo(false), g_showInputInfo(false), g_currentFrame(0)
 	{}
+
+	void EntityDemo::ToggleFpsInfo()
+	{
+		g_showFpsInfo = !g_showFpsInfo;
+		std::cout << "FPS Counter: " << (g_showFpsInfo ? "ON" : "OFF") << std::endl;
+	}
+
+	void EntityDemo::ToggleInputInfo()
+	{
+		g_showInputInfo = !g_showInputInfo;
+		std::cout << "Input/Output Logging: " << (g_showInputInfo ? "ON" : "OFF") << std::endl;
+	}
 
 	void EntityDemo::ResolveInput()
 	{
@@ -12,10 +24,10 @@ namespace Demos
 		switch (keyCode)
 		{
 		case SDLK_F3:
-			g_showFpsInfo = !g_showFpsInfo;
+			ToggleFpsInfo();
 			break;
 		case SDLK_F4:
-			g_showInputInfo = !g_showInputInfo;
+			ToggleInputInfo();
 			break;
 		case SDLK_F5:
 			g_inputBuffer.PrintBufferContents();
@@ -24,13 +36,14 @@ namespace Demos
 			g_inputBuffer.ClearBuffer();
 			break;
 		default:
-			if (g_showInputInfo) std::cout << "Output: " << SDL_GetKeyName(keyCode) << std::endl;
+			if (g_showInputInfo) 
+				std::cout << "Current Frame: " << g_currentFrame << " Output: " << SDL_GetKeyName(keyCode) << std::endl;
 			break;
 		}
 	}
 
 	/*TODO List
-	- Figure out better way of passing fontPath into constructor
+	- 
 	- Seperate out Init stuff into function (Maybe Init debug info for font path?)
 	*/
 	void EntityDemo::Start()
@@ -41,8 +54,10 @@ namespace Demos
 
 		const int WINDOW_WIDTH = 512;
 		const int WINDOW_HEIGHT = 512;
+		const int FONT_SIZE = 16;
 
-		BCCore::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT, "src/res/fonts/OpenSans-Regular.ttf");
+		BCCore::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
+		renderWindow.InitDebugFont("src/res/fonts/OpenSans-Regular.ttf", FONT_SIZE);
 
 		//TODO: Make better way of knowing size of tile/texture
 		float grassWidth = 32;
@@ -67,10 +82,6 @@ namespace Demos
 
 		bool gameRunning = true;
 		SDL_Event event;
-		//bool showDebugInfo = false;
-		int frameCount = 0;
-
-		//BCCore::InputBuffer inputBuffer;
 
 		while (gameRunning)
 		{
@@ -92,21 +103,6 @@ namespace Demos
 				{
 					g_inputBuffer.AddToBuffer(event.key.keysym.sym);
 					if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-
-					/*switch (event.key.keysym.sym)
-					{
-					case SDLK_F3:
-						showDebugInfo = !showDebugInfo;
-						break;
-					case SDLK_F5:
-						inputBuffer.PrintBufferContents();
-						break;
-					case SDLK_F6:
-						inputBuffer.ClearBuffer();
-						break;
-					default:
-						break;
-					}*/
 				}
 			}
 
@@ -129,18 +125,16 @@ namespace Demos
 			renderWindow.RenderEntity(box);
 
 			if (g_showFpsInfo)
-				renderWindow.DisplayDebugInfo(frameCount);
+				renderWindow.DisplayDebugInfo(g_currentFrame);
 
 			renderWindow.DisplayTextures();
 
-			frameCount++;
+			g_currentFrame++;
 
-			if (frameCount >= currentFps)
-				frameCount = 0;
+			if (g_currentFrame >= currentFps)
+				g_currentFrame = 0;
 
 			int frameTicks = SDL_GetTicks() - startTicks;
-
-			//std::cout << "Ticks taken this frame: " << frameTicks << std::endl;
 
 			if (frameTicks < ticksPerFrame)
 			{
