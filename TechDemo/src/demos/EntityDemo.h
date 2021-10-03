@@ -30,5 +30,7 @@ namespace Demos
 		bool g_showInputInfo;
 		int g_currentFrame;
 		BCCore::InputBuffer g_inputBuffer;
+
+		BCCore::Entity* g_playableEntity;
 	};
 }

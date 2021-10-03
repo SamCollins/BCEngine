@@ -3,7 +3,7 @@
 namespace Demos
 {
 	EntityDemo::EntityDemo()
-		:g_showFpsInfo(false), g_showInputInfo(false), g_currentFrame(0)
+		:g_showFpsInfo(false), g_showInputInfo(false), g_currentFrame(0), g_playableEntity(NULL)
 	{}
 
 	void EntityDemo::ToggleFpsInfo()
@@ -21,6 +21,8 @@ namespace Demos
 	void EntityDemo::ResolveInput()
 	{
 		SDL_Keycode keyCode = g_inputBuffer.GetInput();
+		if (g_showInputInfo)
+			std::cout << "Current Frame: " << g_currentFrame << " Output: " << SDL_GetKeyName(keyCode) << std::endl;
 		switch (keyCode)
 		{
 		case SDLK_F3:
@@ -35,9 +37,20 @@ namespace Demos
 		case SDLK_F6:
 			g_inputBuffer.ClearBuffer();
 			break;
+
+		case SDLK_UP:
+			g_playableEntity->SetVelocity(BCSim::Vector2d(0, -100));
+			break;
+		case SDLK_DOWN:
+			g_playableEntity->SetVelocity(BCSim::Vector2d(0, 100));
+			break;
+		case SDLK_LEFT:
+			g_playableEntity->SetVelocity(BCSim::Vector2d(-100, 0));
+			break;
+		case SDLK_RIGHT:
+			g_playableEntity->SetVelocity(BCSim::Vector2d(100, 0));
+			break;
 		default:
-			if (g_showInputInfo) 
-				std::cout << "Current Frame: " << g_currentFrame << " Output: " << SDL_GetKeyName(keyCode) << std::endl;
 			break;
 		}
 	}
@@ -69,16 +82,23 @@ namespace Demos
 		SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 		SDL_Texture* boxTexture = renderWindow.LoadTexture("src/res/gfx/box_1.png");
 
+		BCSim::Environment enviro(0, 0, 0);
+
 		std::vector<BCCore::Entity> grassTiles;
 		for (int i = 0; i < num_tiles; i++)
 		{
-			grassTiles.push_back(BCCore::Entity(BCSim::Vector2d(grassWidth * i, floorHeight), grassTexture));
+			grassTiles.push_back(BCCore::Entity("Grass", BCSim::Vector2d(grassWidth * i, floorHeight), grassTexture));
 		}
 
-		BCCore::Entity box(BCSim::Vector2d(200.0, 200.0), boxTexture);
+		for (auto& grassEntity : grassTiles)
+			enviro.AddStaticEntity(&grassEntity);
+
+		BCCore::Entity box("Box", BCSim::Vector2d(200.0, 200.0), boxTexture);
+		g_playableEntity = &box;
 		
-		BCSim::Environment enviro(0, 0, 0);
 		enviro.AddEntity(&box);
+
+		enviro.PrintEntities();
 
 		bool gameRunning = true;
 		SDL_Event event;

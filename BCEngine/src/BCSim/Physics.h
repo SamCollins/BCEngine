@@ -9,6 +9,7 @@ namespace BCSim
 	class Vector2d
 	{
 	public:
+		//Add some operator overloads in here (Adding/Subtracting for Env/Entity ApplyForce)
 		Vector2d();
 		Vector2d(float x, float y);
 		void PrintData();

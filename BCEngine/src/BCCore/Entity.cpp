@@ -2,8 +2,8 @@
 
 namespace BCCore
 {
-	Entity::Entity(BCSim::Vector2d position, SDL_Texture* texture)
-		:m_position(position), m_texture(texture)
+	Entity::Entity(std::string name, BCSim::Vector2d position, SDL_Texture* texture)
+		:m_name(name), m_position(position), m_velocity(BCSim::Vector2d(0, 0)), m_texture(texture)
 	{
 		SDL_Point textureSize;
 		SDL_QueryTexture(texture, NULL, NULL, &textureSize.x, &textureSize.y);
@@ -16,20 +16,17 @@ namespace BCCore
 
 	#pragma region Getters
 
-	/*double Entity::GetXPosition()
+	std::string Entity::GetName()
 	{
-		return x_pos;
+		return m_name;
 	}
-
-	double Entity::GetYPosition()
-	{
-		return y_pos;
-	}*/
 
 	BCSim::Vector2d& Entity::GetPosition()
 	{
 		return m_position;
 	}
+	
+	//Add ApplyForce method here (Add external force to current velocity)
 
 	void Entity::CalculatePosition(BCSim::Vector2d force, double deltaTime)
 	{
@@ -48,9 +45,46 @@ namespace BCCore
 		//Vector2d newPostion();
 	}
 
+	void Entity::CalculatePosition(double deltaTime)
+	{
+		double horizontalForce = m_velocity.x * deltaTime;
+		double verticalForce = m_velocity.y * deltaTime;
+
+		m_position.x += horizontalForce;
+		m_position.y += verticalForce;
+	}
+
 	void Entity::UpdatePosition(BCSim::Vector2d position)
 	{
 		position = position;
+	}
+
+	bool Entity::CheckCollision(BCCore::Entity* other)
+	{
+		BCSim::Vector2d otherPos = other->GetPosition();
+		SDL_Rect otherFrame = other->GetCurrentFrame();
+
+		bool collDetected =
+			m_position.x < otherPos.x + otherFrame.w &&
+			m_position.x + m_currentFrame.w > otherPos.x &&
+			m_position.y < otherPos.y + otherFrame.h &&
+			m_position.y + m_currentFrame.h > otherPos.y;
+
+		//bool horizontalColl = (m_position.x + m_currentFrame.w) - (otherPos.x + otherFrame.w) <= 0;
+		//bool verticalColl = (m_position.y + m_currentFrame.h) - (otherPos.y + otherFrame.h) <= 0;
+
+		//return horizontalColl || verticalColl;
+		return collDetected;
+	}
+
+	BCSim::Vector2d& Entity::GetVelocity()
+	{
+		return m_velocity;
+	}
+
+	void Entity::SetVelocity(BCSim::Vector2d velocity)
+	{
+		m_velocity = velocity;
 	}
 
 	SDL_Rect Entity::GetCurrentFrame()

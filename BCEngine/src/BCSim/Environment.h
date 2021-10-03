@@ -19,7 +19,11 @@ namespace BCSim
 
 		void SetGravity(Vector2d gravityValue);
 		void AddEntity(BCCore::Entity* entity);
+		void AddStaticEntity(BCCore::Entity* staticEntity);
 		void UpdateEntities(double deltaTime);
+		void CheckCollisions(BCCore::Entity* entity);
+
+		void PrintEntities();
 
 		//~Environment();
 	private:
