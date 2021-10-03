@@ -1,5 +1,4 @@
 
-#include "demos/RectDemo.h"
 #include "demos/EntityDemo.h"
 
 /*Misc TODO List :
@@ -7,9 +6,6 @@
 */
 int main(int argc, char* argv[])
 {
-	/*Demos::RectDemo rectDemo;
-	rectDemo.Start();*/
-
 	Demos::EntityDemo entityDemo;
 	entityDemo.Start();
 

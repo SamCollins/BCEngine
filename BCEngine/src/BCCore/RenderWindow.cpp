@@ -3,7 +3,7 @@
 namespace BCCore
 {
 	RenderWindow::RenderWindow(std::string windowTitle, int width, int height)
-		:m_window(NULL), m_renderer(NULL), m_rect(), m_debugInfoFont(NULL)
+		:m_window(NULL), m_renderer(NULL), m_debugInfoFont(NULL)
 	{
 		m_window = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			width, height, SDL_WINDOW_SHOWN);
@@ -23,6 +23,11 @@ namespace BCCore
 
 		if (m_debugInfoFont == NULL)
 			std::cout << "Font Error: " << TTF_GetError() << std::endl;
+	}
+
+	void RenderWindow::CloseDebugFont()
+	{
+		TTF_CloseFont(m_debugInfoFont);
 	}
 
 	void RenderWindow::ClearScreen()
@@ -84,14 +89,14 @@ namespace BCCore
 
 		if (texture == NULL)
 		{
-			std::cout << "Failed to load texture. Error: " << SDL_GetError() << std::endl;
-			std::cout << "Failed to load texture. Error: " << IMG_GetError() << std::endl;
+			std::cout << "Failed to load texture. SDL Error: " << SDL_GetError() << std::endl;
+			std::cout << "Failed to load texture. IMG Error: " << IMG_GetError() << std::endl;
 		}
-			
 
 		return texture;
 	}
 
+	//Maybe keep this around for backgrounds?
 	void RenderWindow::RenderTexture(SDL_Texture* p_texture)
 	{
 		SDL_Rect textureSrc;
@@ -137,41 +142,9 @@ namespace BCCore
 
 	void RenderWindow::CleanUp()
 	{
+		CloseDebugFont();
+
 		SDL_DestroyRenderer(m_renderer);
 		SDL_DestroyWindow(m_window);
 	}
-
-	#pragma region Rect Demo Functions
-
-	void RenderWindow::DrawBackground()
-	{
-		SDL_SetRenderDrawColor(m_renderer, 0, 255, 255, 255);
-		SDL_RenderClear(m_renderer);
-		SDL_RenderPresent(m_renderer);
-	}
-
-	void RenderWindow::InitRect(int x_pos, int y_pos, int width, int height)
-	{
-		m_rect.x = x_pos;
-		m_rect.y = y_pos;
-		m_rect.w = width;
-		m_rect.h = height;
-	}
-
-	void RenderWindow::MoveRect(int x_pos, int y_pos)
-	{
-		m_rect.x = x_pos;
-		m_rect.y = y_pos;
-	}
-
-
-	void RenderWindow::DrawRect()
-	{
-		SDL_SetRenderDrawColor(m_renderer, 0, 255, 0, 255);
-		SDL_RenderFillRect(m_renderer, &m_rect);
-		SDL_RenderPresent(m_renderer);
-	}
-
-	#pragma endregion
-
 }

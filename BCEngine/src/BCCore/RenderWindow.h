@@ -20,6 +20,7 @@ namespace BCCore
 		RenderWindow(std::string windowTitle, int width, int height);
 
 		void InitDebugFont(std::string fontPath, int fontSize);
+		void CloseDebugFont();
 
 		void ClearScreen();
 		int GetRefreshRate();
@@ -32,17 +33,9 @@ namespace BCCore
 		void DisplayTextures();
 
 		void CleanUp();
-
-		//Test Rect Functions
-		void DrawBackground();
-		void InitRect(int x_pos, int y_pos, int width, int height);
-		void MoveRect(int x_pos, int y_pos);
-		void DrawRect();
 	private:
 		SDL_Window* m_window;
 		SDL_Renderer* m_renderer;
-
-		SDL_Rect m_rect;
 
 		//Debug Info
 		TTF_Font* m_debugInfoFont;

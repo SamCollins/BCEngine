@@ -18,9 +18,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\demos\RectDemo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\demos\EntityDemo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -52,9 +49,6 @@
     <Font Include="src\res\fonts\OpenSans-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\demos\RectDemo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\demos\EntityDemo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
