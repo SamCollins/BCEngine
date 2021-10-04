@@ -81,6 +81,7 @@ namespace Demos
 
 		SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
 		SDL_Texture* boxTexture = renderWindow.LoadTexture("src/res/gfx/box_1.png");
+		SDL_Texture* stoneTexture = renderWindow.LoadTexture("src/res/gfx/stone_1.png");
 
 		BCSim::Environment enviro(0, 0, 0);
 
@@ -92,6 +93,11 @@ namespace Demos
 
 		for (auto& grassEntity : grassTiles)
 			enviro.AddStaticEntity(&grassEntity);
+
+		BCCore::Entity stone1("Stone", BCSim::Vector2d(300.0, 250.0), stoneTexture);
+		enviro.AddStaticEntity(&stone1);
+		BCCore::Entity stone2("Stone", BCSim::Vector2d(100.0, 400.0), stoneTexture);
+		enviro.AddStaticEntity(&stone2);
 
 		BCCore::Entity box("Box", BCSim::Vector2d(200.0, 200.0), boxTexture);
 		g_playableEntity = &box;
@@ -141,6 +147,9 @@ namespace Demos
 			{
 				renderWindow.RenderEntity(tile);
 			}
+
+			renderWindow.RenderEntity(stone1);
+			renderWindow.RenderEntity(stone2);
 
 			renderWindow.RenderEntity(box);
 
