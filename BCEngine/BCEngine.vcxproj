@@ -23,14 +23,14 @@
     <ClInclude Include="src\BCUtils.h" />
     <ClInclude Include="src\BCCore\Entity.h" />
     <ClInclude Include="src\BCCore\InputBuffer.h" />
-    <ClInclude Include="src\BCSim\Physics.h" />
+    <ClInclude Include="src\BCSim\Vector2.h" />
     <ClInclude Include="src\BCCore\RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BCSim\Environment.cpp" />
     <ClCompile Include="src\BCCore\Entity.cpp" />
     <ClCompile Include="src\BCCore\InputBuffer.cpp" />
-    <ClCompile Include="src\BCSim\Physics.cpp" />
+    <ClCompile Include="src\BCSim\Vector2.cpp" />
     <ClCompile Include="src\BCCore\RenderWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

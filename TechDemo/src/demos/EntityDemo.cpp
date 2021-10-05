@@ -56,8 +56,11 @@ namespace Demos
 	}
 
 	/*TODO List
-	- 
+	- Make Collected Header Files (Ex. BCCore.h with all BCCore headers in it)
 	- Seperate out Init stuff into function (Maybe Init debug info for font path?)
+	- Make Component system (Maybe from SDL Tutorial, maybe from Cherno)
+	- Make seperate Demo file that can be easily swapped in main.cpp (Will be used for doing 
+	calculations/testing, maybe making sure Vector2/eventual physics calculations are correct)
 	*/
 	void EntityDemo::Start()
 	{

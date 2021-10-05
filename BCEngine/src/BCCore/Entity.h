@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include "../BCSim/Physics.h"
+#include "../BCSim/Vector2.h"
 
 namespace BCCore
 {

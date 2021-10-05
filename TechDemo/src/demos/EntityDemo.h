@@ -12,7 +12,7 @@
 #include "BCCore/RenderWindow.h"
 #include "BCCore/InputBuffer.h"
 #include "BCCore/Entity.h"
-#include "BCSim/Physics.h"
+#include "BCSim/Vector2.h"
 #include "BCSim/Environment.h"
 
 namespace Demos

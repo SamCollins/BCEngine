@@ -42,6 +42,7 @@ namespace BCCore
 		m_position.y += verticalForce;
 	}
 
+	//Change this to const Entity& other (This copies I think, do more research)
 	bool Entity::CheckCollision(BCCore::Entity* other)
 	{
 		BCSim::Vector2 otherPos = other->GetPosition();
@@ -103,4 +104,5 @@ namespace BCCore
 	}
 
 	#pragma endregion
+
 }
