@@ -2,8 +2,8 @@
 
 namespace BCCore
 {
-	Entity::Entity(std::string name, BCSim::Vector2d position, SDL_Texture* texture)
-		:m_name(name), m_position(position), m_velocity(BCSim::Vector2d(0, 0)), m_texture(texture)
+	Entity::Entity(std::string name, BCSim::Vector2 position, SDL_Texture* texture)
+		:m_name(name), m_position(position), m_velocity(BCSim::Vector2(0, 0)), m_texture(texture)
 	{
 		SDL_Point textureSize;
 		SDL_QueryTexture(texture, NULL, NULL, &textureSize.x, &textureSize.y);
@@ -14,21 +14,9 @@ namespace BCCore
 		m_currentFrame.h = textureSize.y;
 	}
 
-	#pragma region Getters
-
-	std::string Entity::GetName()
-	{
-		return m_name;
-	}
-
-	BCSim::Vector2d& Entity::GetPosition()
-	{
-		return m_position;
-	}
-	
 	//Add ApplyForce method here (Add external force to current velocity)
 
-	void Entity::CalculatePosition(BCSim::Vector2d force, double deltaTime)
+	void Entity::CalculatePosition(BCSim::Vector2 force, double deltaTime)
 	{
 		//TODO: Figure out what to do here
 
@@ -42,7 +30,7 @@ namespace BCCore
 		m_position.x += horizontalForce;
 		m_position.y += verticalForce;
 
-		//Vector2d newPostion();
+		//Vector2 newPostion();
 	}
 
 	void Entity::CalculatePosition(double deltaTime)
@@ -54,14 +42,9 @@ namespace BCCore
 		m_position.y += verticalForce;
 	}
 
-	void Entity::UpdatePosition(BCSim::Vector2d position)
-	{
-		position = position;
-	}
-
 	bool Entity::CheckCollision(BCCore::Entity* other)
 	{
-		BCSim::Vector2d otherPos = other->GetPosition();
+		BCSim::Vector2 otherPos = other->GetPosition();
 		SDL_Rect otherFrame = other->GetCurrentFrame();
 
 		bool collDetected =
@@ -77,12 +60,34 @@ namespace BCCore
 		return collDetected;
 	}
 
-	BCSim::Vector2d& Entity::GetVelocity()
+	#pragma region Getters/Setters
+
+	std::string Entity::GetName()
+	{
+		return m_name;
+	}
+
+	void Entity::SetName(std::string name)
+	{
+		m_name = name;
+	}
+
+	BCSim::Vector2& Entity::GetPosition()
+	{
+		return m_position;
+	}
+
+	void Entity::SetPosition(BCSim::Vector2 position)
+	{
+		m_position = position;
+	}
+
+	BCSim::Vector2& Entity::GetVelocity()
 	{
 		return m_velocity;
 	}
 
-	void Entity::SetVelocity(BCSim::Vector2d velocity)
+	void Entity::SetVelocity(BCSim::Vector2 velocity)
 	{
 		m_velocity = velocity;
 	}

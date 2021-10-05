@@ -10,7 +10,7 @@
 
 #include "../BCUtils.h"
 
-#include "Entity.h";
+#include "Entity.h"
 
 namespace BCCore
 {

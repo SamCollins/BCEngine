@@ -39,16 +39,16 @@ namespace Demos
 			break;
 
 		case SDLK_UP:
-			g_playableEntity->SetVelocity(BCSim::Vector2d(0, -100));
+			g_playableEntity->SetVelocity(BCSim::Vector2(0, -100));
 			break;
 		case SDLK_DOWN:
-			g_playableEntity->SetVelocity(BCSim::Vector2d(0, 100));
+			g_playableEntity->SetVelocity(BCSim::Vector2(0, 100));
 			break;
 		case SDLK_LEFT:
-			g_playableEntity->SetVelocity(BCSim::Vector2d(-100, 0));
+			g_playableEntity->SetVelocity(BCSim::Vector2(-100, 0));
 			break;
 		case SDLK_RIGHT:
-			g_playableEntity->SetVelocity(BCSim::Vector2d(100, 0));
+			g_playableEntity->SetVelocity(BCSim::Vector2(100, 0));
 			break;
 		default:
 			break;
@@ -73,9 +73,9 @@ namespace Demos
 		renderWindow.InitDebugFont("src/res/fonts/OpenSans-Regular.ttf", FONT_SIZE);
 
 		//TODO: Make better way of knowing size of tile/texture
-		float grassWidth = 32;
-		float grassHeight = 32;
-		float floorHeight = WINDOW_HEIGHT - grassHeight;
+		int grassWidth = 32;
+		int grassHeight = 32;
+		int floorHeight = WINDOW_HEIGHT - grassHeight;
 
 		const int num_tiles = WINDOW_WIDTH / grassWidth;
 
@@ -88,18 +88,18 @@ namespace Demos
 		std::vector<BCCore::Entity> grassTiles;
 		for (int i = 0; i < num_tiles; i++)
 		{
-			grassTiles.push_back(BCCore::Entity("Grass", BCSim::Vector2d(grassWidth * i, floorHeight), grassTexture));
+			grassTiles.push_back(BCCore::Entity("Grass", BCSim::Vector2(grassWidth * i, floorHeight), grassTexture));
 		}
 
 		for (auto& grassEntity : grassTiles)
 			enviro.AddStaticEntity(&grassEntity);
 
-		BCCore::Entity stone1("Stone", BCSim::Vector2d(300.0, 250.0), stoneTexture);
+		BCCore::Entity stone1("Stone", BCSim::Vector2(300.0, 250.0), stoneTexture);
 		enviro.AddStaticEntity(&stone1);
-		BCCore::Entity stone2("Stone", BCSim::Vector2d(100.0, 400.0), stoneTexture);
+		BCCore::Entity stone2("Stone", BCSim::Vector2(100.0, 400.0), stoneTexture);
 		enviro.AddStaticEntity(&stone2);
 
-		BCCore::Entity box("Box", BCSim::Vector2d(200.0, 200.0), boxTexture);
+		BCCore::Entity box("Box", BCSim::Vector2(200.0, 200.0), boxTexture);
 		g_playableEntity = &box;
 		
 		enviro.AddEntity(&box);

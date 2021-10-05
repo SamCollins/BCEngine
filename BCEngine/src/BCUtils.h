@@ -5,10 +5,10 @@
 namespace BCUtils
 {
 	//TODO: Rename this, don't know a good name for it but this is bad
-	inline float TimeInSeconds()
+	inline double TimeInSeconds()
 	{
-		float ticks = SDL_GetTicks();
-		ticks *= 0.001f;
+		double ticks = static_cast<double>(SDL_GetTicks());
+		ticks *= 0.001;
 
 		return ticks;
 	}

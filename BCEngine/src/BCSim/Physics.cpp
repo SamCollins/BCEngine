@@ -2,15 +2,15 @@
 
 namespace BCSim
 {
-	Vector2d::Vector2d()
-		:x(0.0f), y(0.0f)
+	Vector2::Vector2()
+		:x(0.0), y(0.0)
 	{}
 
-	Vector2d::Vector2d(float x, float y)
+	Vector2::Vector2(double x, double y)
 		:x(x), y(y)
 	{}
 
-	void Vector2d::PrintData()
+	void Vector2::PrintData()
 	{
 		std::cout << x << ", " << y << std::endl;
 	}

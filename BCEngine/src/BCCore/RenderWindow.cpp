@@ -126,6 +126,7 @@ namespace BCCore
 		entitySrc.h = entityCurrentFrame.h;
 
 		//TODO: Make GetPosition better, getting member variable off function call is cringe
+		//Also figure out best way of rounding (Maybe floor?) to convert from position double to rect int
 		SDL_Rect entityDest;
 		entityDest.x = entity.GetPosition().x * sizeMultiplier;
 		entityDest.y = entity.GetPosition().y * sizeMultiplier;

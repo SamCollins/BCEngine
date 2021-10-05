@@ -5,11 +5,11 @@ namespace BCSim
 	Environment::Environment(int width, int height, int floorHeight)
 		:m_width(width), m_height(height), m_floorHeight(floorHeight)
 	{
-		//Vector2d m_gravity(0.0, 2.0);
-		m_gravity = Vector2d(0, 50);
+		//Vector2 m_gravity(0.0, 2.0);
+		m_gravity = Vector2(0, 50);
 	}
 
-	void Environment::SetGravity(Vector2d gravityValue)
+	void Environment::SetGravity(Vector2 gravityValue)
 	{
 		m_gravity = gravityValue;
 	}
@@ -38,14 +38,14 @@ namespace BCSim
 	{
 		for (auto other : m_entities)
 		{
-			//Need Vector2d == operator overload so this isn't cringe
+			//Need Vector2 == operator overload so this isn't cringe
 			if (entity->GetPosition().x != other->GetPosition().x 
 				&& entity->GetPosition().y != other->GetPosition().y)
 			{
 				if (entity->CheckCollision(other))
 				{
 					//std::cout << entity->GetName() << " & " << other->GetName() << " Hit" << std::endl;
-					entity->SetVelocity(BCSim::Vector2d(0, 0));
+					entity->SetVelocity(BCSim::Vector2(0, 0));
 				}
 				else
 				{

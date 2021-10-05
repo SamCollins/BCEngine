@@ -17,7 +17,7 @@ namespace BCSim
 	public:
 		Environment(int width, int height, int floorHeight);
 
-		void SetGravity(Vector2d gravityValue);
+		void SetGravity(Vector2 gravityValue);
 		void AddEntity(BCCore::Entity* entity);
 		void AddStaticEntity(BCCore::Entity* staticEntity);
 		void UpdateEntities(double deltaTime);
@@ -30,7 +30,7 @@ namespace BCSim
 		int m_width;
 		int m_height;
 		int m_floorHeight;
-		Vector2d m_gravity;
+		Vector2 m_gravity;
 		std::vector<BCCore::Entity*> m_entities;
 	};
 }
