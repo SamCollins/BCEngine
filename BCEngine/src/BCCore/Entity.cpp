@@ -2,7 +2,7 @@
 
 namespace BCCore
 {
-	Entity::Entity(std::string name, BCSim::Vector2 position, SDL_Texture* texture)
+	Entity::Entity(const std::string& name, const BCSim::Vector2& position, SDL_Texture* texture)
 		:m_name(name), m_position(position), m_velocity(BCSim::Vector2(0, 0)), m_texture(texture)
 	{
 		SDL_Point textureSize;
@@ -42,11 +42,15 @@ namespace BCCore
 		m_position.y += verticalForce;
 	}
 
-	//Change this to const Entity& other (This copies I think, do more research)
-	bool Entity::CheckCollision(BCCore::Entity* other)
+	//TODO: Make method for figuring out what direction collision is happening
+	//Also maybe enum class for collision directions?
+	//Then make method for zeroing out velocity in certain direction like v * Vec2(0, 1)
+	//to keep one direction the same but get rid of direction where coll is
+
+	bool Entity::CheckCollision(const BCCore::Entity& other)
 	{
-		BCSim::Vector2 otherPos = other->GetPosition();
-		SDL_Rect otherFrame = other->GetCurrentFrame();
+		BCSim::Vector2 otherPos = other.GetPosition();
+		SDL_Rect otherFrame = other.GetCurrentFrame();
 
 		bool collDetected =
 			m_position.x < otherPos.x + otherFrame.w &&
@@ -63,42 +67,42 @@ namespace BCCore
 
 	#pragma region Getters/Setters
 
-	std::string Entity::GetName()
+	std::string Entity::GetName() const
 	{
 		return m_name;
 	}
 
-	void Entity::SetName(std::string name)
+	void Entity::SetName(const std::string& name)
 	{
 		m_name = name;
 	}
 
-	BCSim::Vector2& Entity::GetPosition()
+	BCSim::Vector2 Entity::GetPosition() const
 	{
 		return m_position;
 	}
 
-	void Entity::SetPosition(BCSim::Vector2 position)
+	void Entity::SetPosition(const BCSim::Vector2& position)
 	{
 		m_position = position;
 	}
 
-	BCSim::Vector2& Entity::GetVelocity()
+	BCSim::Vector2 Entity::GetVelocity() const
 	{
 		return m_velocity;
 	}
 
-	void Entity::SetVelocity(BCSim::Vector2 velocity)
+	void Entity::SetVelocity(const BCSim::Vector2& velocity)
 	{
 		m_velocity = velocity;
 	}
 
-	SDL_Rect Entity::GetCurrentFrame()
+	SDL_Rect Entity::GetCurrentFrame() const
 	{
 		return m_currentFrame;
 	}
 
-	SDL_Texture* Entity::GetTexture()
+	SDL_Texture* Entity::GetTexture() const
 	{
 		return m_texture;
 	}

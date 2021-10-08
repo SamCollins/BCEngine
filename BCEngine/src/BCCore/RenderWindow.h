@@ -17,9 +17,9 @@ namespace BCCore
 	class RenderWindow
 	{
 	public:
-		RenderWindow(std::string windowTitle, int width, int height);
+		RenderWindow(const std::string& windowTitle, int width, int height);
 
-		void InitDebugFont(std::string fontPath, int fontSize);
+		void InitDebugFont(const std::string& fontPath, int fontSize);
 		void CloseDebugFont();
 
 		void ClearScreen();
@@ -27,9 +27,9 @@ namespace BCCore
 		std::string GetFpsDisplay(int currentFrame, int fpsCap);
 		void DisplayDebugInfo(int currentFrame);
 
-		SDL_Texture* LoadTexture(std::string filePath);
+		SDL_Texture* LoadTexture(const std::string& filePath);
 		void RenderTexture(SDL_Texture* p_texture);
-		void RenderEntity(Entity& entity);
+		void RenderEntity(const Entity& entity);
 		void DisplayTextures();
 
 		void CleanUp();

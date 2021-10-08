@@ -2,7 +2,7 @@
 
 namespace BCCore
 {
-	RenderWindow::RenderWindow(std::string windowTitle, int width, int height)
+	RenderWindow::RenderWindow(const std::string& windowTitle, int width, int height)
 		:m_window(NULL), m_renderer(NULL), m_debugInfoFont(NULL)
 	{
 		m_window = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -17,7 +17,7 @@ namespace BCCore
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
 	}
 
-	void RenderWindow::InitDebugFont(std::string fontPath, int fontSize)
+	void RenderWindow::InitDebugFont(const std::string& fontPath, int fontSize)
 	{
 		m_debugInfoFont = TTF_OpenFont(fontPath.c_str(), fontSize);
 
@@ -82,7 +82,7 @@ namespace BCCore
 		SDL_DestroyTexture(Message);
 	}
 
-	SDL_Texture* RenderWindow::LoadTexture(std::string filePath)
+	SDL_Texture* RenderWindow::LoadTexture(const std::string& filePath)
 	{
 		SDL_Texture* texture = NULL;
 		texture = IMG_LoadTexture(m_renderer, filePath.c_str());
@@ -114,7 +114,7 @@ namespace BCCore
 		SDL_RenderCopy(m_renderer, p_texture, &textureSrc, &textureDest);
 	}
 
-	void RenderWindow::RenderEntity(Entity& entity)
+	void RenderWindow::RenderEntity(const Entity& entity)
 	{
 		SDL_Rect entityCurrentFrame = entity.GetCurrentFrame();
 		int sizeMultiplier = 1;

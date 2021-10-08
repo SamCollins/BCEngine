@@ -9,7 +9,7 @@ namespace BCSim
 		m_gravity = Vector2(0, 50);
 	}
 
-	void Environment::SetGravity(Vector2 gravityValue)
+	void Environment::SetGravity(const Vector2& gravityValue)
 	{
 		m_gravity = gravityValue;
 	}
@@ -42,7 +42,7 @@ namespace BCSim
 			if (entity->GetPosition().x != other->GetPosition().x 
 				&& entity->GetPosition().y != other->GetPosition().y)
 			{
-				if (entity->CheckCollision(other))
+				if (entity->CheckCollision(*other))
 				{
 					//std::cout << entity->GetName() << " & " << other->GetName() << " Hit" << std::endl;
 					entity->SetVelocity(BCSim::Vector2(0, 0));

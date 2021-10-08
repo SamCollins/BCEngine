@@ -10,20 +10,21 @@ namespace BCCore
 	class Entity
 	{
 	public:
-		Entity(std::string name, BCSim::Vector2 position, SDL_Texture* texture);
+		Entity(const std::string& name, const BCSim::Vector2& position, SDL_Texture* texture);
 
+		//Might delete this, maybe just changed a lot, do const & for force
 		void CalculatePosition(BCSim::Vector2 force, double deltaTime);
 		void CalculatePosition(double deltaTime);
-		bool CheckCollision(BCCore::Entity* other);
+		bool CheckCollision(const BCCore::Entity& other);
 
-		std::string GetName();
-		void SetName(std::string name);
-		BCSim::Vector2& GetPosition();
-		void SetPosition(BCSim::Vector2 position);
-		BCSim::Vector2& GetVelocity();
-		void SetVelocity(BCSim::Vector2 velocity);
-		SDL_Rect GetCurrentFrame();
-		SDL_Texture* GetTexture();
+		std::string GetName() const;
+		void SetName(const std::string& name);
+		BCSim::Vector2 GetPosition() const;
+		void SetPosition(const BCSim::Vector2& position);
+		BCSim::Vector2 GetVelocity() const;
+		void SetVelocity(const BCSim::Vector2& velocity);
+		SDL_Rect GetCurrentFrame() const;
+		SDL_Texture* GetTexture() const;
 	private:
 		std::string m_name;
 		BCSim::Vector2 m_position;
