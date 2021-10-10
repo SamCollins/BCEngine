@@ -13,14 +13,46 @@ namespace BCCore
 		m_buffer.push(input);
 	}
 
-	SDL_Keycode InputBuffer::GetInput()
+	void InputBuffer::RemoveFromBuffer(SDL_Keycode input)
+	{
+		std::queue<SDL_Keycode> tempQueue;
+		while (!m_buffer.empty())
+		{
+			if (m_buffer.front() == input)
+			{
+				m_buffer.pop();
+			}
+			else
+			{
+				tempQueue.push(m_buffer.front());
+				m_buffer.pop();
+			}
+		}
+
+		m_buffer = tempQueue;
+	}
+
+	SDL_Keycode InputBuffer::GetInputFromBuffer()
 	{
 		SDL_Keycode queuedInput = m_buffer.front();
 		m_buffer.pop();
 		return queuedInput;
 	}
 
-	bool InputBuffer::HasInputs()
+	bool InputBuffer::HasInput(SDL_Keycode input) const
+	{
+		std::queue tempQueue(m_buffer);
+
+		while (!m_buffer.empty())
+		{
+			if (m_buffer.front() == input)
+				return true;
+		}
+
+		return false;
+	}
+
+	bool InputBuffer::HasInputs() const
 	{
 		return !m_buffer.empty();
 	}
@@ -33,7 +65,7 @@ namespace BCCore
 		}
 	}
 
-	void InputBuffer::PrintBufferContents()
+	void InputBuffer::PrintBufferContents() const
 	{
 		std::queue tempQueue(m_buffer);
 

@@ -20,7 +20,7 @@ namespace Demos
 
 	void EntityDemo::ResolveInput()
 	{
-		SDL_Keycode keyCode = g_inputBuffer.GetInput();
+		SDL_Keycode keyCode = g_inputBuffer.GetInputFromBuffer();
 		if (g_showInputInfo)
 			std::cout << "Current Frame: " << g_currentFrame << " Output: " << SDL_GetKeyName(keyCode) << std::endl;
 		switch (keyCode)
