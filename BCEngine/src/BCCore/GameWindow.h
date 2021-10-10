@@ -14,10 +14,14 @@
 
 namespace BCCore
 {
-	class RenderWindow
+	//TODO: Figure out which of these can be const methods
+	//Do testing on if stuff like TTF_CloseFont(debugFont) breaks const
+	//Probably wont ever end up in a situation where theres a const GameWindow?? but should do const
+	//stuff as a good practice
+	class GameWindow
 	{
 	public:
-		RenderWindow(const std::string& windowTitle, int width, int height);
+		GameWindow(const std::string& windowTitle, int width, int height);
 
 		void InitDebugFont(const std::string& fontPath, int fontSize);
 		void CloseDebugFont();

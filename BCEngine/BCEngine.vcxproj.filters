@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\BCCore\RenderWindow.h">
+    <ClInclude Include="src\BCCore\GameWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\BCCore\Entity.h">
@@ -35,7 +35,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BCCore\RenderWindow.cpp">
+    <ClCompile Include="src\BCCore\GameWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\BCCore\Entity.cpp">

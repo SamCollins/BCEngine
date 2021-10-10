@@ -9,7 +9,7 @@
 
 #include "BCUtils.h"
 
-#include "BCCore/RenderWindow.h"
+#include "BCCore/GameWindow.h"
 #include "BCCore/InputBuffer.h"
 #include "BCCore/Entity.h"
 #include "BCSim/Vector2.h"

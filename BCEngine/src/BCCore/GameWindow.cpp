@@ -1,8 +1,8 @@
-#include "RenderWindow.h"
+#include "GameWindow.h"
 
 namespace BCCore
 {
-	RenderWindow::RenderWindow(const std::string& windowTitle, int width, int height)
+	GameWindow::GameWindow(const std::string& windowTitle, int width, int height)
 		:m_window(NULL), m_renderer(NULL), m_debugInfoFont(NULL)
 	{
 		m_window = SDL_CreateWindow(windowTitle.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -17,7 +17,7 @@ namespace BCCore
 			std::cout << "Renderer Initialization Failed. Error: " << SDL_GetError() << std::endl;
 	}
 
-	void RenderWindow::InitDebugFont(const std::string& fontPath, int fontSize)
+	void GameWindow::InitDebugFont(const std::string& fontPath, int fontSize)
 	{
 		m_debugInfoFont = TTF_OpenFont(fontPath.c_str(), fontSize);
 
@@ -25,17 +25,17 @@ namespace BCCore
 			std::cout << "Font Error: " << TTF_GetError() << std::endl;
 	}
 
-	void RenderWindow::CloseDebugFont()
+	void GameWindow::CloseDebugFont()
 	{
 		TTF_CloseFont(m_debugInfoFont);
 	}
 
-	void RenderWindow::ClearScreen()
+	void GameWindow::ClearScreen()
 	{
 		SDL_RenderClear(m_renderer);
 	}
 
-	int RenderWindow::GetRefreshRate()
+	int GameWindow::GetRefreshRate()
 	{
 		int displayIndex = SDL_GetWindowDisplayIndex(m_window);
 		SDL_DisplayMode mode;
@@ -44,7 +44,7 @@ namespace BCCore
 		return mode.refresh_rate;
 	}
 
-	std::string RenderWindow::GetFpsDisplay(int currentFrame, int fpsCap)
+	std::string GameWindow::GetFpsDisplay(int currentFrame, int fpsCap)
 	{
 		std::string displayFrame = std::to_string(currentFrame);
 		std::string displayFpsCap = std::to_string(fpsCap);
@@ -57,7 +57,7 @@ namespace BCCore
 			return std::format("{}/{}", displayFrame, displayFpsCap);
 	}
 
-	void RenderWindow::DisplayDebugInfo(int currentFrame)
+	void GameWindow::DisplayDebugInfo(int currentFrame)
 	{
 		int refreshRate = GetRefreshRate();
 		std::string displayRefreshRate = "Refresh Rate: " + std::to_string(refreshRate);
@@ -82,7 +82,7 @@ namespace BCCore
 		SDL_DestroyTexture(Message);
 	}
 
-	SDL_Texture* RenderWindow::LoadTexture(const std::string& filePath)
+	SDL_Texture* GameWindow::LoadTexture(const std::string& filePath)
 	{
 		SDL_Texture* texture = NULL;
 		texture = IMG_LoadTexture(m_renderer, filePath.c_str());
@@ -97,7 +97,7 @@ namespace BCCore
 	}
 
 	//Maybe keep this around for backgrounds?
-	void RenderWindow::RenderTexture(SDL_Texture* p_texture)
+	void GameWindow::RenderTexture(SDL_Texture* p_texture)
 	{
 		SDL_Rect textureSrc;
 		textureSrc.x = 0;
@@ -114,7 +114,7 @@ namespace BCCore
 		SDL_RenderCopy(m_renderer, p_texture, &textureSrc, &textureDest);
 	}
 
-	void RenderWindow::RenderEntity(const Entity& entity)
+	void GameWindow::RenderEntity(const Entity& entity)
 	{
 		SDL_Rect entityCurrentFrame = entity.GetCurrentFrame();
 		int sizeMultiplier = 1;
@@ -136,12 +136,12 @@ namespace BCCore
 		SDL_RenderCopy(m_renderer, entity.GetTexture(), &entitySrc, &entityDest);
 	}
 
-	void RenderWindow::DisplayTextures()
+	void GameWindow::DisplayTextures()
 	{
 		SDL_RenderPresent(m_renderer);
 	}
 
-	void RenderWindow::CleanUp()
+	void GameWindow::CleanUp()
 	{
 		CloseDebugFont();
 

@@ -72,8 +72,8 @@ namespace Demos
 		const int WINDOW_HEIGHT = 512;
 		const int FONT_SIZE = 16;
 
-		BCCore::RenderWindow renderWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
-		renderWindow.InitDebugFont("src/res/fonts/OpenSans-Regular.ttf", FONT_SIZE);
+		BCCore::GameWindow gameWindow("Entities Demo", WINDOW_WIDTH, WINDOW_HEIGHT);
+		gameWindow.InitDebugFont("src/res/fonts/OpenSans-Regular.ttf", FONT_SIZE);
 
 		//TODO: Make better way of knowing size of tile/texture
 		int grassWidth = 32;
@@ -82,9 +82,9 @@ namespace Demos
 
 		const int num_tiles = WINDOW_WIDTH / grassWidth;
 
-		SDL_Texture* grassTexture = renderWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
-		SDL_Texture* boxTexture = renderWindow.LoadTexture("src/res/gfx/box_1.png");
-		SDL_Texture* stoneTexture = renderWindow.LoadTexture("src/res/gfx/stone_1.png");
+		SDL_Texture* grassTexture = gameWindow.LoadTexture("src/res/gfx/ground_grass_1.png");
+		SDL_Texture* boxTexture = gameWindow.LoadTexture("src/res/gfx/box_1.png");
+		SDL_Texture* stoneTexture = gameWindow.LoadTexture("src/res/gfx/stone_1.png");
 
 		BCSim::Environment enviro(0, 0, 0);
 
@@ -114,7 +114,7 @@ namespace Demos
 
 		while (gameRunning)
 		{
-			int currentFps = renderWindow.GetRefreshRate();
+			int currentFps = gameWindow.GetRefreshRate();
 			//int currentFps = 1;
 			int ticksPerFrame = 1000 / currentFps;
 			double deltaTime = 1.0 / currentFps;
@@ -144,22 +144,22 @@ namespace Demos
 			//box.UpdatePosition(deltaTime);
 			//box.GetPosition().PrintData();
 
-			renderWindow.ClearScreen();
+			gameWindow.ClearScreen();
 
 			for (auto& tile : grassTiles)
 			{
-				renderWindow.RenderEntity(tile);
+				gameWindow.RenderEntity(tile);
 			}
 
-			renderWindow.RenderEntity(stone1);
-			renderWindow.RenderEntity(stone2);
+			gameWindow.RenderEntity(stone1);
+			gameWindow.RenderEntity(stone2);
 
-			renderWindow.RenderEntity(box);
+			gameWindow.RenderEntity(box);
 
 			if (g_showFpsInfo)
-				renderWindow.DisplayDebugInfo(g_currentFrame);
+				gameWindow.DisplayDebugInfo(g_currentFrame);
 
-			renderWindow.DisplayTextures();
+			gameWindow.DisplayTextures();
 
 			g_currentFrame++;
 
@@ -174,6 +174,6 @@ namespace Demos
 			}
 		}
 
-		renderWindow.CleanUp();
+		gameWindow.CleanUp();
 	}
 }
