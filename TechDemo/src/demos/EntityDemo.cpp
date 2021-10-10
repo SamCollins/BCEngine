@@ -95,17 +95,17 @@ namespace Demos
 		}
 
 		for (auto& grassEntity : grassTiles)
-			enviro.AddStaticEntity(&grassEntity);
+			enviro.AddEntity(&grassEntity, false);
 
 		BCCore::Entity stone1("Stone", BCSim::Vector2(300.0, 250.0), stoneTexture);
-		enviro.AddStaticEntity(&stone1);
+		enviro.AddEntity(&stone1, false);
 		BCCore::Entity stone2("Stone", BCSim::Vector2(100.0, 400.0), stoneTexture);
-		enviro.AddStaticEntity(&stone2);
+		enviro.AddEntity(&stone2, false);
 
 		BCCore::Entity box("Box", BCSim::Vector2(200.0, 200.0), boxTexture);
 		g_playableEntity = &box;
 		
-		enviro.AddEntity(&box);
+		enviro.AddEntity(&box, true);
 
 		enviro.PrintEntities();
 

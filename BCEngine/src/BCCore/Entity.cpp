@@ -47,7 +47,7 @@ namespace BCCore
 	//Then make method for zeroing out velocity in certain direction like v * Vec2(0, 1)
 	//to keep one direction the same but get rid of direction where coll is
 
-	bool Entity::CheckCollision(const BCCore::Entity& other)
+	bool Entity::CheckCollision(const BCCore::Entity& other) const
 	{
 		BCSim::Vector2 otherPos = other.GetPosition();
 		SDL_Rect otherFrame = other.GetCurrentFrame();

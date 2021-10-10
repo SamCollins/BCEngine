@@ -15,7 +15,7 @@ namespace BCCore
 		//Might delete this, maybe just changed a lot, do const & for force
 		void CalculatePosition(BCSim::Vector2 force, double deltaTime);
 		void CalculatePosition(double deltaTime);
-		bool CheckCollision(const BCCore::Entity& other);
+		bool CheckCollision(const BCCore::Entity& other) const;
 
 		std::string GetName() const;
 		void SetName(const std::string& name);

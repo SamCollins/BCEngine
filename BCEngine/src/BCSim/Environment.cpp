@@ -14,14 +14,11 @@ namespace BCSim
 		m_gravity = gravityValue;
 	}
 
-	void Environment::AddEntity(BCCore::Entity* entity)
+	void Environment::AddEntity(BCCore::Entity* entity, bool applyGravity)
 	{
-		entity->SetVelocity(m_gravity);
-		m_entities.push_back(entity);
-	}
+		if (applyGravity)
+			entity->SetVelocity(m_gravity);
 
-	void Environment::AddStaticEntity(BCCore::Entity* entity)
-	{
 		m_entities.push_back(entity);
 	}
 
@@ -45,7 +42,8 @@ namespace BCSim
 				if (entity->CheckCollision(*other))
 				{
 					//std::cout << entity->GetName() << " & " << other->GetName() << " Hit" << std::endl;
-					entity->SetVelocity(BCSim::Vector2(0, 0));
+					//entity->SetVelocity(BCSim::Vector2(0, 0));
+					ResolveCollision(entity, other);
 				}
 				else
 				{
@@ -55,7 +53,12 @@ namespace BCSim
 		}
 	}
 
-	void Environment::PrintEntities()
+	void Environment::ResolveCollision(BCCore::Entity* entity, BCCore::Entity* other)
+	{
+		entity->SetVelocity(BCSim::Vector2(0, 0));
+	}
+
+	void Environment::PrintEntities() const
 	{
 		for (auto entity : m_entities)
 		{

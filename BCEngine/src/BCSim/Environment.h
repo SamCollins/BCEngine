@@ -18,12 +18,12 @@ namespace BCSim
 		Environment(int width, int height, int floorHeight);
 
 		void SetGravity(const Vector2& gravityValue);
-		void AddEntity(BCCore::Entity* entity);
-		void AddStaticEntity(BCCore::Entity* staticEntity);
+		void AddEntity(BCCore::Entity* entity, bool applyGravity);
 		void UpdateEntities(double deltaTime);
 		void CheckCollisions(BCCore::Entity* entity);
+		void ResolveCollision(BCCore::Entity* entity, BCCore::Entity* other);
 
-		void PrintEntities();
+		void PrintEntities() const;
 
 		//~Environment();
 	private:
