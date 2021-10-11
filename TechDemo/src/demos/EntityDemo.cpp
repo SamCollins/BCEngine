@@ -39,16 +39,20 @@ namespace Demos
 			break;
 
 		case SDLK_UP:
-			g_playableEntity->SetVelocity(BCSim::Vector2(0, -100));
+			//g_playableEntity->SetVelocity(BCSim::Vector2(0, -100));
+			g_playableEntity->AddForce(BCSim::Vector2(0, -20));
 			break;
 		case SDLK_DOWN:
-			g_playableEntity->SetVelocity(BCSim::Vector2(0, 100));
+			//g_playableEntity->SetVelocity(BCSim::Vector2(0, 100));
+			g_playableEntity->AddForce(BCSim::Vector2(0, 20));
 			break;
 		case SDLK_LEFT:
-			g_playableEntity->SetVelocity(BCSim::Vector2(-100, 0));
+			//g_playableEntity->SetVelocity(BCSim::Vector2(-100, 0));
+			g_playableEntity->AddForce(BCSim::Vector2(-20, 0));
 			break;
 		case SDLK_RIGHT:
-			g_playableEntity->SetVelocity(BCSim::Vector2(100, 0));
+			//g_playableEntity->SetVelocity(BCSim::Vector2(100, 0));
+			g_playableEntity->AddForce(BCSim::Vector2(20, 0));
 			break;
 		default:
 			break;
@@ -123,6 +127,7 @@ namespace Demos
 			//TODO: Rework to account for variable frame rates (Not locked at refresh rate)
 			int startTicks = SDL_GetTicks();
 
+			//TODO: Figure out better way of getting keyboard input (Weird delay for held down inputs)
 			while (SDL_PollEvent(&event))
 			{
 				if (event.type == SDL_QUIT)
