@@ -3,14 +3,15 @@
 namespace BCCore
 {
 	InputBuffer::InputBuffer()
-		:m_buffer()
+		:m_buffer(), m_maxBufferLength(10)
 	{
 
 	}
 
 	void InputBuffer::AddToBuffer(SDL_Keycode input)
 	{
-		m_buffer.push(input);
+		if (m_buffer.size() < m_maxBufferLength)
+			m_buffer.push(input);
 	}
 
 	void InputBuffer::RemoveFromBuffer(SDL_Keycode input)

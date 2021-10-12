@@ -22,8 +22,12 @@ namespace Demos
 	public:
 		EntityDemo();
 		void Start();
+
 		void ToggleFpsInfo();
 		void ToggleInputInfo();
+
+		//void AddInputToBuffer(SDL_Keycode input);
+		void PopulateInputBuffer();
 		void ResolveInput();
 	private:
 		bool g_showFpsInfo;

@@ -20,5 +20,6 @@ namespace BCCore
 		void PrintBufferContents() const;
 	private:
 		std::queue<SDL_Keycode> m_buffer;
+		int m_maxBufferLength;
 	};
 }

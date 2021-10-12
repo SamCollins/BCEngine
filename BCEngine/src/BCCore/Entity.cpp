@@ -3,7 +3,7 @@
 namespace BCCore
 {
 	Entity::Entity(const std::string& name, const BCSim::Vector2& position, SDL_Texture* texture)
-		:m_name(name), m_position(position), m_velocity(BCSim::Vector2(0, 0)), m_maxVelocity(BCSim::Vector2(100, 100)),
+		:m_name(name), m_position(position), m_velocity(BCSim::Vector2(0, 0)), m_maxVelocity(BCSim::Vector2(40, 40)),
 		m_texture(texture)
 	{
 		SDL_Point textureSize;
@@ -46,9 +46,13 @@ namespace BCCore
 	void Entity::AddForce(const BCSim::Vector2& force)
 	{
 		if (m_velocity.x < m_maxVelocity.x || m_velocity.y < m_maxVelocity.y)
-		{
 			m_velocity += force;
-		}
+
+		if (m_velocity.x > m_maxVelocity.x)
+			m_velocity.x = m_maxVelocity.x;
+
+		if (m_velocity.y > m_maxVelocity.y)
+			m_velocity.y = m_maxVelocity.y;
 	}
 
 	//TODO: Make method for figuring out what direction collision is happening

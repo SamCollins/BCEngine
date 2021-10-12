@@ -18,8 +18,48 @@ namespace Demos
 		std::cout << "Input/Output Logging: " << (g_showInputInfo ? "ON" : "OFF") << std::endl;
 	}
 
+	/*void EntityDemo::AddInputToBuffer(SDL_Keycode input)
+	{
+		if (!g_inputBuffer.HasInput(input))
+		{
+			g_inputBuffer.AddToBuffer(input);
+			if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(SDLK_a) << std::endl;
+		}
+	}*/
+
+	void EntityDemo::PopulateInputBuffer()
+	{
+		const Uint8* keyStates = SDL_GetKeyboardState(NULL);
+
+		if (keyStates[SDL_SCANCODE_W])
+		{
+			g_inputBuffer.AddToBuffer(SDLK_UP);
+			if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(SDLK_a) << std::endl;
+		}
+
+		if (keyStates[SDL_SCANCODE_A])
+		{
+			g_inputBuffer.AddToBuffer(SDLK_LEFT);
+			if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(SDLK_a) << std::endl;
+		}
+
+		if (keyStates[SDL_SCANCODE_S])
+		{
+			g_inputBuffer.AddToBuffer(SDLK_DOWN);
+			if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(SDLK_a) << std::endl;
+		}
+
+		if (keyStates[SDL_SCANCODE_D])
+		{
+			g_inputBuffer.AddToBuffer(SDLK_RIGHT);
+			if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(SDLK_a) << std::endl;
+		}
+	}
+
 	void EntityDemo::ResolveInput()
 	{
+		int speed = 5;
+
 		SDL_Keycode keyCode = g_inputBuffer.GetInputFromBuffer();
 		if (g_showInputInfo)
 			std::cout << "Current Frame: " << g_currentFrame << " Output: " << SDL_GetKeyName(keyCode) << std::endl;
@@ -133,15 +173,20 @@ namespace Demos
 				if (event.type == SDL_QUIT)
 					gameRunning = false;
 
-				if (event.type == SDL_KEYDOWN)
+				/*if (event.type == SDL_KEYDOWN)
 				{
 					g_inputBuffer.AddToBuffer(event.key.keysym.sym);
 					if (g_showInputInfo) std::cout << "Input Added: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
-				}
+				}*/
 			}
 
+			PopulateInputBuffer();
+			
 			if (g_inputBuffer.HasInputs())
 				ResolveInput();
+
+			//g_inputBuffer.PrintBufferContents();
+			std::cout << g_playableEntity->GetVelocity() << std::endl;
 
 			enviro.UpdateEntities(deltaTime);
 			//box.GetPosition().PrintData();
