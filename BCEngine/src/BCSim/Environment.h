@@ -17,6 +17,8 @@ namespace BCSim
 	public:
 		Environment(int width, int height, int floorHeight);
 
+		void ApplyFriction(BCCore::Entity* entity);
+
 		void SetGravity(const Vector2& gravityValue);
 		void AddEntity(BCCore::Entity* entity, bool applyGravity);
 		void UpdateEntities(double deltaTime);
@@ -31,6 +33,7 @@ namespace BCSim
 		int m_height;
 		int m_floorHeight;
 		Vector2 m_gravity;
+		Vector2 m_friction;
 		std::vector<BCCore::Entity*> m_entities;
 	};
 }

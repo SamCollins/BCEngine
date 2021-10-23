@@ -7,6 +7,21 @@ namespace BCSim
 	{
 		//Vector2 m_gravity(0.0, 2.0);
 		m_gravity = Vector2(0, 50);
+		m_friction = Vector2(0.9, 0.9);
+	}
+
+	void Environment::ApplyFriction(BCCore::Entity* entity)
+	{
+		Vector2 currentVelocity = entity->GetVelocity();
+		Vector2 newVelocity = currentVelocity * m_friction;
+
+		if (std::abs(newVelocity.x) > 0 && std::abs(newVelocity.x) < 0.1)
+			newVelocity.x = 0;
+
+		if (std::abs(newVelocity.y) > 0 && std::abs(newVelocity.y) < 0.1)
+			newVelocity.y = 0;
+
+		entity->SetVelocity(newVelocity);
 	}
 
 	void Environment::SetGravity(const Vector2& gravityValue)
@@ -26,6 +41,9 @@ namespace BCSim
 	{
 		for (auto& entity : m_entities)
 		{
+			/*Vector2 test = entity->GetVelocity();
+			entity->SetVelocity(test * m_friction);*/
+			ApplyFriction(entity);
 			entity->CalculatePosition(deltaTime);
 			CheckCollisions(entity);
 		}
